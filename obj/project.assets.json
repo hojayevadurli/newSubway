@@ -8,25 +8,20 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\durli.hojayeva\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\hojay\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\durli.hojayeva\\source\\repos\\subwayProject\\subwayProject.csproj",
+      "projectUniqueName": "C:\\Users\\hojay\\Source\\Repos\\newSubway\\subwayProject.csproj",
       "projectName": "subwayProject",
-      "projectPath": "C:\\Users\\durli.hojayeva\\source\\repos\\subwayProject\\subwayProject.csproj",
-      "packagesPath": "C:\\Users\\durli.hojayeva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\durli.hojayeva\\source\\repos\\subwayProject\\obj\\",
+      "projectPath": "C:\\Users\\hojay\\Source\\Repos\\newSubway\\subwayProject.csproj",
+      "packagesPath": "C:\\Users\\hojay\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hojay\\Source\\Repos\\newSubway\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\durli.hojayeva\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\hojay\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -65,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
