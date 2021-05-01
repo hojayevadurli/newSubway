@@ -1,0 +1,2796 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Unnamed project Test Execution Report</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript">
+            /**
+            * jQuery.fn.sortElements
+            * --------------
+            * #author James Padolsey (http://james.padolsey.com)
+            * #version 0.11
+            * #updated 18-MAR-2010
+            * #url https://raw.github.com/jamespadolsey/jQuery-Plugins/master/sortElements/jquery.sortElements.js
+            * --------------
+            * #param Function comparator:
+            *   Exactly the same behaviour as [1,2,3].sort(comparator)
+            *   
+            * #param Function getSortable
+            *   A function that should return the element that is
+            *   to be sorted. The comparator will run on the
+            *   current collection, but you may want the actual
+            *   resulting sort to occur on a parent or another
+            *   associated element.
+            *   
+            *   E.g. $('td').sortElements(comparator, function(){
+            *      return this.parentNode; 
+            *   })
+            *   
+            *   The <td>'s parent (<tr>) will be sorted instead
+            *   of the <td> itself.
+            */
+            jQuery.fn.sortElements = (function () {
+
+                var sort = [].sort;
+
+                return function (comparator, getSortable) {
+
+                    getSortable = getSortable || function () { return this; };
+
+                    var placements = this.map(function () {
+
+                        var sortElement = getSortable.call(this),
+                parentNode = sortElement.parentNode,
+
+                        // Since the element itself will change position, we have
+                        // to have some way of storing it's original position in
+                        // the DOM. The easiest way is to have a 'flag' node:
+                nextSibling = parentNode.insertBefore(
+                    document.createTextNode(''),
+                    sortElement.nextSibling
+                );
+
+                        return function () {
+
+                            if (parentNode === this) {
+                                throw new Error(
+                        "You can't sort elements if any one is a descendant of another."
+                    );
+                            }
+
+                            // Insert before flag:
+                            parentNode.insertBefore(this, nextSibling);
+                            // Remove flag:
+                            parentNode.removeChild(nextSibling);
+
+                        };
+
+                    });
+
+                    return sort.call(this, comparator).each(function (i) {
+                        placements[i].call(getSortable.call(this));
+                    });
+
+                };
+
+            })();
+        </script>
+        <script type="text/javascript">
+            jQuery.fn.setBarSizes = (function () {
+                return function (metricName, maxBarSize, min) {
+                    var max = Math.max.apply(Math, $.makeArray($(this).map(function () { return Number($(this).attr('data-sr-' + metricName)); })));
+                    var scale = 1.0;
+                    while (max > 0.0 && max <= 10.0) {
+                        scale = scale * 10.0;
+                        max = max * 10.0;
+                    }
+                    max = (Math.ceil(max / 2) * 2) / scale;
+
+                    this.each(function () {
+                        var barAnchor = $(this).find('a');
+                        var actual = $(this).attr('data-sr-' + metricName);
+                        var newHeight = Math.max(Math.round(maxBarSize * (actual - min) / (max - min)), 2);
+                        barAnchor.css({ height: newHeight });
+                    });
+
+                    var unit = "";
+                    if (metricName.substr(metricName.length - 4, 4) === "time")
+                        unit = "s";
+
+                    $('#testview .scale-min-label').each(function () {
+                        $(this).text(min.toString() + unit);
+                    });
+                    $('#testview .scale-max-label').each(function () {
+                        $(this).text(max.toString() + unit);
+                    });
+                    var mid = max / 2;
+                    $('#testview .scale-mid-label').each(function () {
+                        $(this).text(mid.toString() + unit);
+                    });
+                };
+            })();
+
+            function getComparer(metricName, isDesc) {
+                return function (a, b) {
+                    var aNumber = Number($(a).attr('data-sr-' + metricName));
+                    var bNumber = Number($(b).attr('data-sr-' + metricName));
+                    var result = aNumber > bNumber ? 1 : (aNumber < bNumber ? -1 : 0);
+                    if (isDesc)
+                        result = -1 * result;
+
+                    if (result == 0 && metricName != "order")
+                        result = getComparer("order", false)(a, b);
+
+                    return result;
+                };
+            }
+
+            var currentSort = "";
+            function doSort(allowToggleDesc) {
+                var newSort = $("input[name='barSortOrder']:checked").val();
+                if (allowToggleDesc && currentSort == newSort) {
+                    $('#barSortDesc').click();
+                    doSort(false);
+                    return;
+                }
+                currentSort = newSort;
+                $('#testview td.testview-item').sortElements(getComparer(newSort, $('#barSortDesc').is(':checked')));
+            }
+
+
+            function doSetHeights(allowSort) {
+                var selectedMetric = $("input[name='barHeight']:checked").val();
+                $('#testview td.testview-item').setBarSizes(selectedMetric, 60, 0.0);
+
+                if (allowSort && currentSort != selectedMetric) {
+                    var $radios = $("input[name='barSortOrder']");
+                    $radios.filter('[value=' + selectedMetric + ']').attr('checked', true);
+                    $("#barSortDesc").attr("checked", [true]);
+                    doSort(false);
+                }
+            }
+
+            $(document).ready(function () {
+                $("input[name='barSortOrder']").click(function () { doSort(true); return true; });
+                $("input[name='barSortDesc']").change(function () { doSort(false); });
+                $("input[name='barHeight']").change(function () { doSetHeights(true); });
+
+                doSort(false);
+                doSetHeights(false);
+
+                $("div.scrollable").css({ 'overflow': 'auto' });
+            });
+        </script>
+
+        <style type="text/css">
+            body 
+            {
+                color: #000000;
+                font-family: Arial,Liberation Sans,DejaVu Sans,sans-serif;
+                line-height: 130%;
+            }
+            h1 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 170%;
+                font-weight: bold;
+            }            
+            h2 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 130%;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }            
+            h3 {
+                font-family: Trebuchet MS,Liberation Sans,DejaVu Sans,sans-serif;
+                font-size: 120%;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }            
+            a.bar
+            {
+                text-decoration: none;
+                display: block;
+                line-height: 1px;
+            }
+            .description
+            {
+                font-style: italic;
+            }
+            .log 
+            {
+                width: 600px;
+                white-space: pre-wrap;
+                display: block;
+                margin: 0px;
+            }
+            .errorMessage 
+            {
+                width: 600px;
+                color: Red;
+                font-weight: bold;
+            }
+            .stackTrace 
+            {
+                width: 600px;
+                white-space: pre-wrap;
+                font-style: italic;
+                color: Red;
+                display: block;
+            }
+            table.testEvents
+            {
+                border: solid 1px #e8eef4;
+                border-collapse: collapse;
+            }
+            table.testEvents td
+            {
+                vertical-align: top;
+                padding: 5px;
+                border: solid 1px #e8eef4;
+            }
+            table.testEvents th
+            {
+                padding: 6px 5px;
+                text-align: left;
+                background-color: #e8eef4;
+                border: solid 1px #e8eef4;                
+            }
+            .comment
+            {
+                font-style: italic;
+                font-size: smaller;
+            }
+            .startupBar
+            {
+                background-color: #EEEEEE;
+                cursor: default;
+            }
+            
+            .colorSucceeded
+            {
+                background-color: #90ED7B;
+            }
+            .colorIgnored
+            {
+                background-color: #FFFF85;
+            }
+            .colorPending
+            {
+                background-color: #D47BED;
+            }
+            .colorNothingToRun
+            {
+                background-color: #CCCCFF;
+            }
+            .colorSkipped
+            {
+                background-color: #CCCCFF;
+            }
+            .colorInconclusive
+            {
+                background-color: #7BEDED;
+            }
+            .colorCleanupFailed
+            {
+                background-color: #FFCCCC;
+            }
+            .colorRandomlyFailed
+            {
+                background-color: #EDB07B;
+            }
+            .colorFailed
+            {
+                background-color: #ED5F5F;
+            }
+            .colorInitializationFailed
+            {
+                background-color: #FF0000;
+            }
+            .colorFrameworkError
+            {
+                background-color: #FF0000;
+            }
+            ul.subNodeLinks
+            {
+                padding-left: 20px;
+                margin: 0px;
+            }
+            ul.subNodeLinks li
+            {
+                list-style: none;
+            }
+            
+            /* views general */
+            div.scrollable
+            {
+                /*overflow: auto; - thsi has to be set from js, because of an IE9 bug */
+            }
+            div.viewbox
+            {
+                position: relative;
+                border: 3px solid #e8eef4;
+            }
+            div.viewbox table
+            {
+                border: 0px;
+            }
+                        
+            /* testview */
+            #testview
+            {
+                padding-top: 23px;
+            }
+            
+            table.testview-items td
+            {
+                vertical-align: bottom;
+                padding: 0px 1px 0px 1px;
+            }
+            td.right-padding, td.left-padding
+            {
+                width: 25px;
+                min-width: 25px;
+            }
+            table.testview-items a.bar
+            {
+                width: 5px;
+            }
+            table.testview-items tr.testview-items-row
+            {
+                height: 60px;
+            }
+            
+            /* scale */
+            table.vertical-scale 
+            {
+                position: absolute;
+                top: 23px;
+                left: 0px;
+                width: 100%;
+                z-index: -100;
+            }
+            table.vertical-scale td, tr.horizontal-scale td
+            {
+                font-size: 60%;
+                line-height: normal;
+            }
+            table.vertical-scale tr.scale-max, table.vertical-scale tr.scale-mid 
+            {
+                height: 30px;
+            }
+            tr.horizontal-scale, table.vertical-scale tr.scale-min 
+            {
+                height: 12px;
+            }
+            
+            td.scale-max-label, td.scale-mid-label, td.scale-min-label
+            {
+                border-top: solid 1px #E6E6E6;
+                text-align: left;
+                vertical-align: top;
+            }
+            td.scale-10-label
+            {
+                border-left: solid 1px #E6E6E6;
+                text-align: left;
+                vertical-align: bottom;
+                padding-left: 1px;
+            }
+            tr.scale-mid td, tr.scale-min td, tr.scale-max td
+            {
+                border-top: solid 1px #E6E6E6;
+            }
+           
+            
+            /* bar-control */
+            #bar-control
+            {
+                font-size: 60%;
+                line-height: normal;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+            #bar-control label
+            {
+                font-weight: bold;
+                vertical-align: middle;
+            }
+            #bar-control .option
+            {
+                vertical-align: middle;
+                text-transform: lowercase;
+            }
+            #bar-control input[type="checkbox"]
+            {
+                padding: 0 2px 0 3px;
+            }
+            #bar-control input
+            {
+                vertical-align: top;
+                height: 12px;
+                margin: 0px;
+                padding: 0px;
+            }
+            #bar-control div
+            {
+                float: right;
+                margin: 3px 5px 3px 5px;
+            }
+
+            /* timeline view */
+            #timelineview
+            {
+                padding-top: 5px;
+            }
+            table.timelineview a
+            {
+                height: 20px;
+            }
+            table.timelineview td
+            {
+                vertical-align: bottom;
+                padding: 0px 1px 0px 0px;
+                border: 0px;
+            }
+            tr.thread-items-row
+            {
+                height: 25px;
+            }
+            tr.thread-items-row td
+            {
+                vertical-align: bottom;
+            }
+            td.thread-label
+            {
+                padding: 0px 6px 0px 6px;
+                text-align: right;
+                line-height: 18px;
+                vertical-align: bottom;
+            }
+            th.thread-label
+            {
+                padding: 3px 6px 0px 6px;
+                line-height: 18px;
+                text-align: left;
+                vertical-align: bottom;
+            }
+        </style>
+	</head>
+	<body>
+        <h1>Unnamed project Test Execution Report</h1>
+        
+    <ul>
+        <li>Project: Unnamed project</li>
+        <li>Configuration: </li>
+        <li>Test Assemblies: C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwaySpecflow.dll</li>
+        <li>Start Time: 4/30/2021 4:33:16 PM</li>
+        <li>Duration: 00:00:06.7974854</li>
+        <li>Test Threads: 1</li>
+    </ul>
+
+
+        <h2>Result: 3 failed</h2>
+        <table class="testEvents">
+                <tr>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 36px;" 
+           title="3 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 86px;" 
+           title="7 skipped" 
+                   ></a>
+    </td>
+    <td>
+        <a class="bar colorPending" 
+           style="width: 74px;" 
+           title="6 pending" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>16 (test executions: 20)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>6</td>
+    <td>0</td>
+    <td>7</td>
+
+        </table>
+        
+        <h2>Test Timeline Summary</h2>
+
+        <div id="timelineview" class="viewbox">
+            <div class="scrollable">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <th class="thread-label" colspan="2">thread</th>
+                    </tr>
+                        <tr class="thread-items-row">
+                            <td class="thread-label" title="Machine: DESKTOP-LCU6KAD">#0</td>
+                            <td colspan="2">
+                                <table class="timelineview" cellpadding="0" cellspacing="0">
+                                    <tr>
+
+                                            <td>
+        <a
+            class="bar startupBar" 
+            style="width: 5px;" 
+                title="test thread startup" 
+        >&nbsp;</a>
+    </td>
+
+    <td>
+        <a
+            class="bar colorPending" 
+            style="width: 122px;" 
+                title="PBJ with Wheat (in Calculator)" 
+                href="#t569525560.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorPending" 
+            style="width: 3px;" 
+                title="PBJ with White (in Calculator)" 
+                href="#t-503002596.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorPending" 
+            style="width: 3px;" 
+                title="PBJ with Rye (in Calculator)" 
+                href="#t-1358206729.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorPending" 
+            style="width: 3px;" 
+                title="Shredded chicken with Rye bread (in Calculator)" 
+                href="#t-491777783.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorPending" 
+            style="width: 3px;" 
+                title="Shredded chicken with white bread (in Calculator)" 
+                href="#t2106975204.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorPending" 
+            style="width: 3px;" 
+                title="shredded chicken with wheat bread (in Calculator)" 
+                href="#t-26303352.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Shredded chicken with white bread and cheeses (in Calculator)" 
+                href="#t1493029247.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Shredded chicken with white bread and cheeses (in Calculator) retry #1" 
+                href="#t1493029247.1"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Shredded chicken with white bread and cheeses (in Calculator) retry #2" 
+                href="#t1493029247.2"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in Calculator)" 
+                href="#t-174189524.0"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in Calculator) retry #1" 
+                href="#t-174189524.1"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in Calculator) retry #2" 
+                href="#t-174189524.2"
+        >&nbsp;</a>
+    </td>
+    <td>
+        <a
+            class="bar colorFailed" 
+            style="width: 3px;" 
+                title="BLT with rye bread,cheese, bacons, (in Calculator)" 
+                href="#t1260047148.0"
+        >&nbsp;</a>
+    </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    <tr class="horizontal-scale">
+                        <td>&nbsp;</td>
+                            <td class="scale-10-label" style="width: 82px;min-width: 82px;">0s</td>
+                        <td class="scale-10-label">4s</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+    <h2>Test Result View</h2>
+    <div id="testview" class="viewbox">
+        <div id="bar-control">
+            <div id="bar-control-sort">
+                <label>sort by:</label>
+                <span class="option"><input type="radio" name="barSortOrder" value="exectime" />Time</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="acttime" />Act Time</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="order" />Execution</span>
+                <span class="option"><input type="radio" name="barSortOrder" value="rescode" checked="checked" />Result</span>
+                <span class="option"><input type="checkbox" name="barSortDesc" id="barSortDesc" checked="checked" />desc</span>
+            </div>
+            <div id="bar-control-heights">
+                <label>heights:</label>
+                <span class="option"><input type="radio" checked="checked" name="barHeight" value="exectime" />Time</span>
+                <span class="option"><input type="radio" name="barHeight" value="acttime" />Act Time</span>
+            </div>
+        </div>
+        <table class="vertical-scale" cellpadding="0" cellspacing="0">
+            <tr class="scale-max">
+                <td class="left-padding scale-max-label">&nbsp;</td>
+                <td colspan="20">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+            <tr class="scale-mid">
+                <td class="left-padding scale-mid-label">&nbsp;</td>
+                <td colspan="20">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+            <tr class="scale-min">
+                <td class="left-padding scale-min-label">&nbsp;</td>
+                <td colspan="20">&nbsp;</td>
+                <td class="right-padding">&nbsp;</td>
+            </tr>
+        </table>
+        <div class="scrollable">
+            <table class="testview-items" cellpadding="0" cellspacing="0">
+                <tr class="testview-items-row">
+                    <td class="left-padding">&nbsp;</td>
+    <td class="testview-item" 
+        data-sr-exectime="0.6716019" data-sr-rescode="310" data-sr-order="0" data-sr-acttime="0.0">
+        <a
+            class="bar colorPending" 
+            style="height: 60px;"
+            title="PBJ with Wheat (in Calculator)"
+            href="#t569525560.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0830357" data-sr-rescode="310" data-sr-order="1" data-sr-acttime="0.0">
+        <a
+            class="bar colorPending" 
+            style="height: 7px;"
+            title="PBJ with White (in Calculator)"
+            href="#t-503002596.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0408143" data-sr-rescode="310" data-sr-order="2" data-sr-acttime="0.0">
+        <a
+            class="bar colorPending" 
+            style="height: 4px;"
+            title="PBJ with Rye (in Calculator)"
+            href="#t-1358206729.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0514999" data-sr-rescode="310" data-sr-order="3" data-sr-acttime="0.0">
+        <a
+            class="bar colorPending" 
+            style="height: 5px;"
+            title="Shredded chicken with Rye bread (in Calculator)"
+            href="#t-491777783.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0127033" data-sr-rescode="310" data-sr-order="4" data-sr-acttime="0.0">
+        <a
+            class="bar colorPending" 
+            style="height: 2px;"
+            title="Shredded chicken with white bread (in Calculator)"
+            href="#t2106975204.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0121978" data-sr-rescode="310" data-sr-order="5" data-sr-acttime="0.0">
+        <a
+            class="bar colorPending" 
+            style="height: 2px;"
+            title="shredded chicken with wheat bread (in Calculator)"
+            href="#t-26303352.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="3.8E-05" data-sr-rescode="420" data-sr-order="13" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="PBJ with wheat (in Calculator)"
+            href="#t1351514840.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="6E-06" data-sr-rescode="420" data-sr-order="14" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="PBJ with white (in Calculator)"
+            href="#t297861052.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="3.2E-06" data-sr-rescode="420" data-sr-order="15" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="PBJ with Rye (in Calculator)"
+            href="#t-1358206729.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="1.22E-05" data-sr-rescode="420" data-sr-order="16" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Shredded chicken with Rye bread (in Calculator)"
+            href="#t-491777783.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="3.8E-06" data-sr-rescode="420" data-sr-order="17" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Shredded chicken with white bread (in Calculator)"
+            href="#t2106975204.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="4.1E-06" data-sr-rescode="420" data-sr-order="18" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="shredded chicken with wheat bread (in Calculator)"
+            href="#t-26303352.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="3.8E-06" data-sr-rescode="420" data-sr-order="19" data-sr-acttime="0.0">
+        <a
+            class="bar colorSkipped" 
+            style="height: 2px;"
+            title="Shredded chicken with white bread and cheeses (in Calculator)"
+            href="#t1493029247.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0787761" data-sr-rescode="540" data-sr-order="6" data-sr-acttime="0.002">
+        <a
+            class="bar colorFailed" 
+            style="height: 7px;"
+            title="Shredded chicken with white bread and cheeses (in Calculator)"
+            href="#t1493029247.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0182828" data-sr-rescode="540" data-sr-order="7" data-sr-acttime="0.002">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Shredded chicken with white bread and cheeses (in Calculator) retry #1"
+            href="#t1493029247.1">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0193153" data-sr-rescode="540" data-sr-order="8" data-sr-acttime="0.004">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Shredded chicken with white bread and cheeses (in Calculator) retry #2"
+            href="#t1493029247.2">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.029836" data-sr-rescode="540" data-sr-order="9" data-sr-acttime="0.002">
+        <a
+            class="bar colorFailed" 
+            style="height: 3px;"
+            title="Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in Calculator)"
+            href="#t-174189524.0">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0626779" data-sr-rescode="540" data-sr-order="10" data-sr-acttime="0.002">
+        <a
+            class="bar colorFailed" 
+            style="height: 6px;"
+            title="Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in Calculator) retry #1"
+            href="#t-174189524.1">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0230241" data-sr-rescode="540" data-sr-order="11" data-sr-acttime="0.001">
+        <a
+            class="bar colorFailed" 
+            style="height: 2px;"
+            title="Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in Calculator) retry #2"
+            href="#t-174189524.2">&nbsp;</a>
+    </td>
+    <td class="testview-item" 
+        data-sr-exectime="0.0345866" data-sr-rescode="540" data-sr-order="12" data-sr-acttime="0.002">
+        <a
+            class="bar colorFailed" 
+            style="height: 3px;"
+            title="BLT with rye bread,cheese, bacons, (in Calculator)"
+            href="#t1260047148.0">&nbsp;</a>
+    </td>
+                    <td class="right-padding">&nbsp;</td>
+                </tr>
+                <tr class="horizontal-scale">
+                    <td class="left-padding">&nbsp;</td>
+                    <td colspan="10">&nbsp;</td>
+                        <td class="scale-10-label" colspan="10">10</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+        
+        
+    <h2>Feature Summary</h2>
+    <table class="testEvents">
+            <tr>
+            <th>Feature</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+
+            <tr>
+                <td><a href="#f1672408205">Calculator</a></td>
+                    <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 155px;" 
+           title="3 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+    <td>
+        <a class="bar colorPending" 
+           style="width: 132px;" 
+           title="6 pending" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>9 (test executions: 13)</td>
+    <td>0</td>
+    <td>7</td>
+    <td>6</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:01.1383517</td>
+
+            </tr>
+            <tr>
+                <td><a href="#f1672408205">Calculator</a></td>
+                    <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="7 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>7</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>7</td>
+        <td>00:00:00.0000711</td>
+
+            </tr>
+    </table>
+
+
+        <a name="error_summary" />
+        <h2>Error Summary</h2>
+        <table class="testEvents">
+                <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+    </tr>
+
+                <tr>
+                    <td>
+                        <a href="#t1493029247.0">Shredded chicken with white bread and cheeses (in subwaySpecflow, Calculator)</a>
+                            <a href="#t1493029247.1">retry #1</a>
+                            <a href="#t1493029247.2">retry #2</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: The given key &#39;sandytype&#39; was not present in the dictionary.</div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#t-174189524.0">Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in subwaySpecflow, Calculator)</a>
+                            <a href="#t-174189524.1">retry #1</a>
+                            <a href="#t-174189524.2">retry #2</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: The given key &#39;sandytype&#39; was not present in the dictionary.</div></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#t1260047148.0">BLT with rye bread,cheese, bacons, (in subwaySpecflow, Calculator)</a>
+                    </td>
+                        <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 199px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" style="padding-left: 20px;"><div class="errorMessage">Error: The given key &#39;sandytype&#39; was not present in the dictionary.</div></td>
+                </tr>
+        </table>
+
+        <h2>Scenario Summary</h2>
+            <a name="f1672408205" />
+            <h3>Feature: Calculator</h3>
+                <div class="description"><pre>![Calculator](https://specflow.org/wp-content/uploads/2020/09/calculator.png)
+Simple calculator for adding **two** numbers
+
+Link to a feature: [Calculator](subwaySpecflow/Features/Calculator.feature)
+***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t569525560.0">Scenario: PBJ with Wheat</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorPending" 
+           style="width: 199px;" 
+           title="1 pending" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.6716019</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-503002596.0">Scenario: PBJ with White</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorPending" 
+           style="width: 199px;" 
+           title="1 pending" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0830357</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-1358206729.0">Scenario: PBJ with Rye</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorPending" 
+           style="width: 199px;" 
+           title="1 pending" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0408143</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-491777783.0">Scenario: Shredded chicken with Rye bread</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorPending" 
+           style="width: 199px;" 
+           title="1 pending" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0514999</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t2106975204.0">Scenario: Shredded chicken with white bread</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorPending" 
+           style="width: 199px;" 
+           title="1 pending" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0127033</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-26303352.0">Scenario: shredded chicken with wheat bread</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorPending" 
+           style="width: 199px;" 
+           title="1 pending" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0121978</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1493029247.0">Scenario: Shredded chicken with white bread and cheeses</a>
+            <a href="#t1493029247.1">retry #1</a>
+            <a href="#t1493029247.2">retry #2</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1163742</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-174189524.0">Scenario: Shredded chicken with rye bread,cheese, lettuces, tomato, bacon</a>
+            <a href="#t-174189524.1">retry #1</a>
+            <a href="#t-174189524.2">retry #2</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 599px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1 (test executions: 3)</td>
+    <td>0</td>
+    <td>3</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.1155380</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1260047148.0">Scenario: BLT with rye bread,cheese, bacons,</a>
+
+                        </td>
+                        
+                            <td>
+            0%
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorFailed" 
+           style="width: 199px;" 
+           title="1 failed" 
+                          href="#error_summary"
+        ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+        <td>00:00:00.0345866</td>
+
+                        
+                    </tr>
+            </table>
+            <a name="f1672408205" />
+            <h3>Feature: Calculator</h3>
+                <div class="description"><pre>![Calculator](https://specflow.org/wp-content/uploads/2020/09/calculator.png)
+Simple calculator for adding **two** numbers
+
+Link to a feature: [Calculator](subwaySpecflow/Features/Calculator.feature)
+***Further read***: **[Learn more about how to generate Living Documentation](https://docs.specflow.org/projects/specflow-livingdoc/en/latest/LivingDocGenerator/Generating-Documentation.html)**</pre>
+                </div>
+            <table class="testEvents">
+                    <tr>
+            <th>Test</th>
+        <th colspan="2">Success rate</th>
+        <th>Tests</th>
+        <th>Succeeded</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Ignored</th>
+        <th>Skipped</th>
+            <th>Duration</th>
+    </tr>
+
+                    <tr>
+                        <td>
+                                    <a href="#t1351514840.0">Scenario: PBJ with wheat</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00.0000380</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t297861052.0">Scenario: PBJ with white</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00.0000060</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-1358206729.0">Scenario: PBJ with Rye</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00.0000032</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-491777783.0">Scenario: Shredded chicken with Rye bread</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00.0000122</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t2106975204.0">Scenario: Shredded chicken with white bread</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00.0000038</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t-26303352.0">Scenario: shredded chicken with wheat bread</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00.0000041</td>
+
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                                    <a href="#t1493029247.0">Scenario: Shredded chicken with white bread and cheeses</a>
+
+                        </td>
+                        
+                            <td>
+            n/a
+    </td>
+    <td>
+            <table class="timelineview" cellpadding="0" cellspacing="0">
+        <tr>
+    <td>
+        <a class="bar colorSkipped" 
+           style="width: 199px;" 
+           title="1 skipped" 
+                   ></a>
+    </td>
+        </tr>
+    </table>
+
+    </td>
+    <td>1</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>0</td>
+    <td>1</td>
+        <td>00:00:00.0000038</td>
+
+                        
+                    </tr>
+            </table>
+
+        <h2>Execution Details</h2>
+            <a name="t569525560.0" />
+            <h3>Scenario: PBJ with Wheat (in subwaySpecflow, Calculator)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Pending</li>
+                <li>Start time: 4/30/2021 4:33:22 PM</li>
+                <li>Execution time (sec): 0.6716019</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given PBJ with Wheat</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - PBJ with Wheat] -->
+                            <pre class="log">No matching step definition found for the step. Use the following code to create one:
+        [Given(@&quot;PBJ with Wheat&quot;)]
+        public void GivenPBJWithWheat()
+        {
+            _scenarioContext.Pending();
+        }</pre>
+                        </td>
+                        <td>Pending in 0.178s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the cost should be 3.00</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - PBJ with Wheat] -->
+                            <pre class="log">skipped because of previous errors
+Pending: No matching step definition found for one or more steps.
+using System;
+using TechTalk.SpecFlow;
+
+namespace MyNamespace
+{
+    [Binding]
+    public class StepDefinitions
+    {
+        private readonly ScenarioContext _scenarioContext;
+
+        public StepDefinitions(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+        [Given(@&quot;PBJ with Wheat&quot;)]
+        public void GivenPBJWithWheat()
+        {
+            _scenarioContext.Pending();
+        }
+    }
+}</pre>
+                        </td>
+                        <td>Skipped in 0.195s</td>
+                    </tr>
+            </table>
+            <a name="t-503002596.0" />
+            <h3>Scenario: PBJ with White (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Pending</li>
+                <li>Start time: 4/30/2021 4:33:22 PM</li>
+                <li>Execution time (sec): 0.0830357</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given PBJ with White</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - PBJ with White] -->
+                            <pre class="log">No matching step definition found for the step. Use the following code to create one:
+        [Given(@&quot;PBJ with White&quot;)]
+        public void GivenPBJWithWhite()
+        {
+            _scenarioContext.Pending();
+        }</pre>
+                        </td>
+                        <td>Pending in 0.041s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the cost should be 2.75</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - PBJ with White] -->
+                            <pre class="log">skipped because of previous errors
+Pending: No matching step definition found for one or more steps.
+using System;
+using TechTalk.SpecFlow;
+
+namespace MyNamespace
+{
+    [Binding]
+    public class StepDefinitions
+    {
+        private readonly ScenarioContext _scenarioContext;
+
+        public StepDefinitions(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+        [Given(@&quot;PBJ with White&quot;)]
+        public void GivenPBJWithWhite()
+        {
+            _scenarioContext.Pending();
+        }
+    }
+}</pre>
+                        </td>
+                        <td>Skipped in 0.035s</td>
+                    </tr>
+            </table>
+            <a name="t-1358206729.0" />
+            <h3>Scenario: PBJ with Rye (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Pending</li>
+                <li>Start time: 4/30/2021 4:33:22 PM</li>
+                <li>Execution time (sec): 0.0408143</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given PBJ with Rye</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - PBJ with Rye] -->
+                            <pre class="log">No matching step definition found for the step. Use the following code to create one:
+        [Given(@&quot;PBJ with Rye&quot;)]
+        public void GivenPBJWithRye()
+        {
+            _scenarioContext.Pending();
+        }</pre>
+                        </td>
+                        <td>Pending in 0.01s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the cost should be 2.5</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - PBJ with Rye] -->
+                            <pre class="log">skipped because of previous errors
+Pending: No matching step definition found for one or more steps.
+using System;
+using TechTalk.SpecFlow;
+
+namespace MyNamespace
+{
+    [Binding]
+    public class StepDefinitions
+    {
+        private readonly ScenarioContext _scenarioContext;
+
+        public StepDefinitions(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+        [Given(@&quot;PBJ with Rye&quot;)]
+        public void GivenPBJWithRye()
+        {
+            _scenarioContext.Pending();
+        }
+    }
+}</pre>
+                        </td>
+                        <td>Skipped in 0.028s</td>
+                    </tr>
+            </table>
+            <a name="t-491777783.0" />
+            <h3>Scenario: Shredded chicken with Rye bread (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Pending</li>
+                <li>Start time: 4/30/2021 4:33:22 PM</li>
+                <li>Execution time (sec): 0.0514999</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given Shredded chicken with Rye bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with Rye bread] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;Shredded chicken&quot;, &quot;Rye&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.034s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the cost should be 4.50</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Shredded chicken with Rye bread] -->
+                            <pre class="log">pending: CalculatorSteps.ThenTheCostShouldBe(4.50)
+Pending: One or more step definitions are not implemented yet.
+  CalculatorSteps.ThenTheCostShouldBe(4.50)</pre>
+                        </td>
+                        <td>Pending in 0.012s</td>
+                    </tr>
+            </table>
+            <a name="t2106975204.0" />
+            <h3>Scenario: Shredded chicken with white bread (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Pending</li>
+                <li>Start time: 4/30/2021 4:33:22 PM</li>
+                <li>Execution time (sec): 0.0127033</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given Shredded chicken with white bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;Shredded chicken&quot;, &quot;white&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.005s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the cost should be 4.0</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Shredded chicken with white bread] -->
+                            <pre class="log">pending: CalculatorSteps.ThenTheCostShouldBe(4.0)
+Pending: One or more step definitions are not implemented yet.
+  CalculatorSteps.ThenTheCostShouldBe(4.0)</pre>
+                        </td>
+                        <td>Pending in 0.005s</td>
+                    </tr>
+            </table>
+            <a name="t-26303352.0" />
+            <h3>Scenario: shredded chicken with wheat bread (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Pending</li>
+                <li>Start time: 4/30/2021 4:33:22 PM</li>
+                <li>Execution time (sec): 0.0121978</li>
+                <li>Thread: #0</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given shredded chicken with wheat bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - shredded chicken with wheat bread] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;shredded chicken&quot;, &quot;wheat&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.004s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then the cost should be 4.25</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - shredded chicken with wheat bread] -->
+                            <pre class="log">pending: CalculatorSteps.ThenTheCostShouldBe(4.25)
+Pending: One or more step definitions are not implemented yet.
+  CalculatorSteps.ThenTheCostShouldBe(4.25)</pre>
+                        </td>
+                        <td>Pending in 0.005s</td>
+                    </tr>
+            </table>
+            <a name="t1493029247.0" />
+            <h3>Scenario: Shredded chicken with white bread and cheeses (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/30/2021 4:33:22 PM</li>
+                <li>Execution time (sec): 0.0787761</li>
+                <li>Thread: #0</li>
+                <li>Error: The given key &#39;sandytype&#39; was not present in the dictionary.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given Shredded chicken and with white bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;Shredded chicken and&quot;, &quot;white&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.044s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">error: The given key 'sandytype' was not present in the dictionary. (0.0s)</pre>
+                                <div class="errorMessage">The given key 'sandytype' was not present in the dictionary.</div>
+                                <pre class="stackTrace">System.Collections.Generic.KeyNotFoundException: The given key 'sandytype' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at TechTalk.SpecFlow.SpecFlowContext.Get[T](String key) in D:\a\1\s\TechTalk.SpecFlow\SpecFlowContext.cs:line 64
+   at subwaySpecflow.Subway.GivenWithCheeseAdded(String topping) in C:\Users\hojay\Source\Repos\subwaySpecflow\Subway.cs:line 55
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 568
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 492
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 268
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at subwaySpecflow.CalculatorFeature.ScenarioCleanup()
+   at subwaySpecflow.CalculatorFeature.ShreddedChickenWithWhiteBreadAndCheeses() in C:\Users\hojay\Source\Repos\subwaySpecflow\SpecFlowFeature1.feature:line 44
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.011s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When they added together</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Then sum should be 6.25</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.012s</td>
+                    </tr>
+            </table>
+            <a name="t1493029247.1" />
+            <h3>Scenario: Shredded chicken with white bread and cheeses (in subwaySpecflow, Calculator) retry #1</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 0.0182828</li>
+                <li>Thread: #0</li>
+                <li>Error: The given key &#39;sandytype&#39; was not present in the dictionary.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given Shredded chicken and with white bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;Shredded chicken and&quot;, &quot;white&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">error: The given key 'sandytype' was not present in the dictionary. (0.0s)</pre>
+                                <div class="errorMessage">The given key 'sandytype' was not present in the dictionary.</div>
+                                <pre class="stackTrace">System.Collections.Generic.KeyNotFoundException: The given key 'sandytype' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at TechTalk.SpecFlow.SpecFlowContext.Get[T](String key) in D:\a\1\s\TechTalk.SpecFlow\SpecFlowContext.cs:line 64
+   at subwaySpecflow.Subway.GivenWithCheeseAdded(String topping) in C:\Users\hojay\Source\Repos\subwaySpecflow\Subway.cs:line 55
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 568
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 492
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 268
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at subwaySpecflow.CalculatorFeature.ScenarioCleanup()
+   at subwaySpecflow.CalculatorFeature.ShreddedChickenWithWhiteBreadAndCheeses() in C:\Users\hojay\Source\Repos\subwaySpecflow\SpecFlowFeature1.feature:line 44
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.003s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When they added together</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Then sum should be 6.25</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.003s</td>
+                    </tr>
+            </table>
+            <a name="t1493029247.2" />
+            <h3>Scenario: Shredded chicken with white bread and cheeses (in subwaySpecflow, Calculator) retry #2</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 0.0193153</li>
+                <li>Thread: #0</li>
+                <li>Error: The given key &#39;sandytype&#39; was not present in the dictionary.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given Shredded chicken and with white bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;Shredded chicken and&quot;, &quot;white&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.003s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">error: The given key 'sandytype' was not present in the dictionary. (0.0s)</pre>
+                                <div class="errorMessage">The given key 'sandytype' was not present in the dictionary.</div>
+                                <pre class="stackTrace">System.Collections.Generic.KeyNotFoundException: The given key 'sandytype' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at TechTalk.SpecFlow.SpecFlowContext.Get[T](String key) in D:\a\1\s\TechTalk.SpecFlow\SpecFlowContext.cs:line 64
+   at subwaySpecflow.Subway.GivenWithCheeseAdded(String topping) in C:\Users\hojay\Source\Repos\subwaySpecflow\Subway.cs:line 55
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 568
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 492
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 268
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at subwaySpecflow.CalculatorFeature.ScenarioCleanup()
+   at subwaySpecflow.CalculatorFeature.ShreddedChickenWithWhiteBreadAndCheeses() in C:\Users\hojay\Source\Repos\subwaySpecflow\SpecFlowFeature1.feature:line 44
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.003s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When they added together</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.004s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Then sum should be 6.25</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Shredded chicken with white bread and cheeses] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t-174189524.0" />
+            <h3>Scenario: Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 0.029836</li>
+                <li>Thread: #0</li>
+                <li>Error: The given key &#39;sandytype&#39; was not present in the dictionary.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given shredded chicken with rye bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;shredded chicken&quot;, &quot;rye&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.005s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">error: The given key 'sandytype' was not present in the dictionary. (0.0s)</pre>
+                                <div class="errorMessage">The given key 'sandytype' was not present in the dictionary.</div>
+                                <pre class="stackTrace">System.Collections.Generic.KeyNotFoundException: The given key 'sandytype' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at TechTalk.SpecFlow.SpecFlowContext.Get[T](String key) in D:\a\1\s\TechTalk.SpecFlow\SpecFlowContext.cs:line 64
+   at subwaySpecflow.Subway.GivenWithCheeseAdded(String topping) in C:\Users\hojay\Source\Repos\subwaySpecflow\Subway.cs:line 55
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 568
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 492
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 268
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at subwaySpecflow.CalculatorFeature.ScenarioCleanup()
+   at subwaySpecflow.CalculatorFeature.ShreddedChickenWithRyeBreadCheeseLettucesTomatoBacon() in C:\Users\hojay\Source\Repos\subwaySpecflow\SpecFlowFeature1.feature:line 57
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.005s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with tomato added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with bacon added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When they added together</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Then sum should be 6.50</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.003s</td>
+                    </tr>
+            </table>
+            <a name="t-174189524.1" />
+            <h3>Scenario: Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in subwaySpecflow, Calculator) retry #1</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 0.0626779</li>
+                <li>Thread: #0</li>
+                <li>Error: The given key &#39;sandytype&#39; was not present in the dictionary.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given shredded chicken with rye bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;shredded chicken&quot;, &quot;rye&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">error: The given key 'sandytype' was not present in the dictionary. (0.0s)</pre>
+                                <div class="errorMessage">The given key 'sandytype' was not present in the dictionary.</div>
+                                <pre class="stackTrace">System.Collections.Generic.KeyNotFoundException: The given key 'sandytype' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at TechTalk.SpecFlow.SpecFlowContext.Get[T](String key) in D:\a\1\s\TechTalk.SpecFlow\SpecFlowContext.cs:line 64
+   at subwaySpecflow.Subway.GivenWithCheeseAdded(String topping) in C:\Users\hojay\Source\Repos\subwaySpecflow\Subway.cs:line 55
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 568
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 492
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 268
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at subwaySpecflow.CalculatorFeature.ScenarioCleanup()
+   at subwaySpecflow.CalculatorFeature.ShreddedChickenWithRyeBreadCheeseLettucesTomatoBacon() in C:\Users\hojay\Source\Repos\subwaySpecflow\SpecFlowFeature1.feature:line 57
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.003s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.004s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.003s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with tomato added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with bacon added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When they added together</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Then sum should be 6.50</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.008s</td>
+                    </tr>
+            </table>
+            <a name="t-174189524.2" />
+            <h3>Scenario: Shredded chicken with rye bread,cheese, lettuces, tomato, bacon (in subwaySpecflow, Calculator) retry #2</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 0.0230241</li>
+                <li>Thread: #0</li>
+                <li>Error: The given key &#39;sandytype&#39; was not present in the dictionary.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given shredded chicken with rye bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;shredded chicken&quot;, &quot;rye&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">error: The given key 'sandytype' was not present in the dictionary. (0.0s)</pre>
+                                <div class="errorMessage">The given key 'sandytype' was not present in the dictionary.</div>
+                                <pre class="stackTrace">System.Collections.Generic.KeyNotFoundException: The given key 'sandytype' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at TechTalk.SpecFlow.SpecFlowContext.Get[T](String key) in D:\a\1\s\TechTalk.SpecFlow\SpecFlowContext.cs:line 64
+   at subwaySpecflow.Subway.GivenWithCheeseAdded(String topping) in C:\Users\hojay\Source\Repos\subwaySpecflow\Subway.cs:line 55
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 568
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 492
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 268
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at subwaySpecflow.CalculatorFeature.ScenarioCleanup()
+   at subwaySpecflow.CalculatorFeature.ShreddedChickenWithRyeBreadCheeseLettucesTomatoBacon() in C:\Users\hojay\Source\Repos\subwaySpecflow\SpecFlowFeature1.feature:line 57
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.003s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with lettuce added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with tomato added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with bacon added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When they added together</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Then sum should be 6.50</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - Shredded chicken with rye bread,cheese, lettuces, tomato, bacon] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t1260047148.0" />
+            <h3>Scenario: BLT with rye bread,cheese, bacons, (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Failed</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 0.0345866</li>
+                <li>Thread: #0</li>
+                <li>Error: The given key &#39;sandytype&#39; was not present in the dictionary.</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Given BLT with rye bread</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - BLT with rye bread,cheese, bacons,] -->
+                            <pre class="log">done: Subway.PBJcalc(&quot;BLT&quot;, &quot;rye&quot;) (0.0s)</pre>
+                        </td>
+                        <td>Succeeded in 0.011s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with cheese added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - BLT with rye bread,cheese, bacons,] -->
+                            <pre class="log">error: The given key 'sandytype' was not present in the dictionary. (0.0s)</pre>
+                                <div class="errorMessage">The given key 'sandytype' was not present in the dictionary.</div>
+                                <pre class="stackTrace">System.Collections.Generic.KeyNotFoundException: The given key 'sandytype' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at TechTalk.SpecFlow.SpecFlowContext.Get[T](String key) in D:\a\1\s\TechTalk.SpecFlow\SpecFlowContext.cs:line 64
+   at subwaySpecflow.Subway.GivenWithCheeseAdded(String topping) in C:\Users\hojay\Source\Repos\subwaySpecflow\Subway.cs:line 55
+   at TechTalk.SpecFlow.Bindings.BindingInvoker.InvokeBinding(IBinding binding, IContextManager contextManager, Object[] arguments, ITestTracer testTracer, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Bindings\BindingInvoker.cs:line 73
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 568
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.ExecuteStepMatch(BindingMatch match, Object[] arguments, TimeSpan&amp; duration)
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.ExecuteStep(IContextManager contextManager, StepInstance stepInstance) in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 492
+   at TechTalk.SpecFlow.Infrastructure.TestExecutionEngine.OnAfterLastStep() in D:\a\1\s\TechTalk.SpecFlow\Infrastructure\TestExecutionEngine.cs:line 268
+   at TechTalk.SpecRun.SpecFlowPlugin.Runtime.RunnerTestExecutionEngine.OnAfterLastStep()
+   at TechTalk.SpecFlow.TestRunner.CollectScenarioErrors() in D:\a\1\s\TechTalk.SpecFlow\TestRunner.cs:line 59
+   at subwaySpecflow.CalculatorFeature.ScenarioCleanup()
+   at subwaySpecflow.CalculatorFeature.BLTWithRyeBreadCheeseBacons() in C:\Users\hojay\Source\Repos\subwaySpecflow\SpecFlowFeature1.feature:line 70
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.ExecuteInternal(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TaskExecutors.StaticOrInstanceMethodExecutor.Execute(ITestThreadExecutionContext testThreadExecutionContext)
+   at TechTalk.SpecRun.Framework.TestNodeTask.Execute()</pre>
+                        </td>
+                        <td>Failed in 0.004s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with bacon added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - BLT with rye bread,cheese, bacons,] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.001s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with bacon added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - BLT with rye bread,cheese, bacons,] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.004s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">And with bacon added</pre>
+                        </td>
+                        <td>
+                            <!-- [TestArrange: Scenario - BLT with rye bread,cheese, bacons,] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">When they added together</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAct: Scenario - BLT with rye bread,cheese, bacons,] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <pre class="log">Then Then sum should be 8.75</pre>
+                        </td>
+                        <td>
+                            <!-- [TestAssert: Scenario - BLT with rye bread,cheese, bacons,] -->
+                            <pre class="log">skipped because of previous errors</pre>
+                        </td>
+                        <td>Skipped in 0.002s</td>
+                    </tr>
+            </table>
+            <a name="t1351514840.0" />
+            <h3>Scenario: PBJ with wheat (in subwaySpecflow, Calculator)</h3>
+                <div class="description">
+                    tags: mytag
+                </div>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 3.8E-05</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t297861052.0" />
+            <h3>Scenario: PBJ with white (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 6E-06</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-1358206729.0" />
+            <h3>Scenario: PBJ with Rye (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 3.2E-06</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-491777783.0" />
+            <h3>Scenario: Shredded chicken with Rye bread (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 1.22E-05</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t2106975204.0" />
+            <h3>Scenario: Shredded chicken with white bread (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 3.8E-06</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t-26303352.0" />
+            <h3>Scenario: shredded chicken with wheat bread (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 4.1E-06</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+            <a name="t1493029247.0" />
+            <h3>Scenario: Shredded chicken with white bread and cheeses (in subwaySpecflow, Calculator)</h3>
+            <ul>
+                <li>Status: Skipped</li>
+                <li>Start time: 4/30/2021 4:33:23 PM</li>
+                <li>Execution time (sec): 3.8E-06</li>
+                <li>Thread: #-1</li>
+            </ul>
+            <table class="testEvents">
+                <tr>
+                    <th>Steps</th>
+                    <th>Trace</th>
+                    <th>Result</th>
+                </tr>
+            </table>
+	</body>
+</html>

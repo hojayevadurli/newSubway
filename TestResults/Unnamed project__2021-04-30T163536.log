@@ -1,0 +1,705 @@
+﻿2021-04-30T16:35:36.6332396-06:00;VSTestExecutionThread;Info;SpecFlow+Runner execution started
+2021-04-30T16:35:36.6337089-06:00;VSTestExecutionThread;Info;SpecFlow+Runner 3.7.3 in Framework net50 in x64 mode execution started
+2021-04-30T16:35:36.6337205-06:00;VSTestExecutionThread;Info;TestAdapter Location: C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\TechTalk.SpecRun.VisualStudio.TestAdapter.dll
+2021-04-30T16:35:36.6367680-06:00;VSTestExecutionThread;Info;Current UserName: 'hojay', MachineName: 'DESKTOP-LCU6KAD'
+2021-04-30T16:35:36.6953150-06:00;VSTestExecutionThread;Info;SpecRun: running tests in C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwaySpecflow.dll
+2021-04-30T16:35:36.6957031-06:00;VSTestExecutionThread;Info;Output folder configured to "C:\Users\hojay\Source\Repos\newSubway\TestResults" (default)
+2021-04-30T16:35:36.6958216-06:00;VSTestExecutionThread;Info;Profile: 
+2021-04-30T16:35:36.8050788-06:00;VSTestExecutionThread;Info;Log file path: C:\Users\hojay\Source\Repos\newSubway\TestResults\Unnamed project__2021-04-30T163536.log
+2021-04-30T16:35:36.8208409-06:00;Thread#12;Info;Checking activation
+2021-04-30T16:35:37.0191951-06:00;Thread#12;Info;Activated.
+2021-04-30T16:35:37.0199129-06:00;Thread#12;Info;Activation check completed
+2021-04-30T16:35:37.0200978-06:00;Thread#12;Info;Starting test run
+2021-04-30T16:35:37.2432124-06:00;Thread#12;Info;Discovering target: Default
+2021-04-30T16:35:37.2437522-06:00;Thread#12;Info;Discovering tests from assembly: C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwaySpecflow.dll
+2021-04-30T16:35:37.4830453-06:00;Thread#12;Info;Discovered tests from assembly: C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwaySpecflow.dll
+2021-04-30T16:35:37.4861653-06:00:Test Suite Dump
+2021-04-30T16:35:37.4898505-06:00:#0: Unnamed project/ - 
+2021-04-30T16:35:37.4898846-06:00:#1: Default - 
+2021-04-30T16:35:37.4898901-06:00:#2: subwaySpecflow - 
+2021-04-30T16:35:37.4898941-06:00:#3: Calculator - 
+2021-04-30T16:35:37.4923919-06:00:#4: PBJ with Wheat - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:PBJ+with+Wheat
+2021-04-30T16:35:37.4924705-06:00:#5: PBJ with White - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:PBJ+with+White
+2021-04-30T16:35:37.4924898-06:00:#6: PBJ with Rye - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:PBJ+with+Rye
+2021-04-30T16:35:37.4925047-06:00:#7: Shredded chicken with Rye bread - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:Shredded+chicken+with+Rye+bread
+2021-04-30T16:35:37.4925203-06:00:#8: Shredded chicken with white bread - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:Shredded+chicken+with+white+bread
+2021-04-30T16:35:37.4925547-06:00:#9: shredded chicken with wheat bread - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:shredded+chicken+with+wheat+bread
+2021-04-30T16:35:37.4925710-06:00:#10: Shredded chicken with white bread and cheeses - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:Shredded+chicken+with+white+bread+and+cheeses
+2021-04-30T16:35:37.4925868-06:00:#11: Shredded chicken with rye bread,cheese, lettuces, tomato, bacon - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:Shredded+chicken+with+rye+bread%2ccheese%2c+lettuces%2c+tomato%2c+bacon
+2021-04-30T16:35:37.4926209-06:00:#12: BLT with rye bread,cheese, bacons, - TestAssembly:subwaySpecflow/Feature:Calculator/Scenario:BLT+with+rye+bread%2ccheese%2c+bacons%2c
+2021-04-30T16:35:37.4927434-06:00:End: Test Suite Dump
+2021-04-30T16:35:37.5266152-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:37.5312814-06:00:Thread#:Scheduler: testitem #4 from normal test queue 
+2021-04-30T16:35:37.5314954-06:00:Thread#0:Scheduler: considering testitem #4 for thread 0
+2021-04-30T16:35:37.5390909-06:00:Thread#0:TestItem#4:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:37.5391221-06:00:Thread#0:TestItem#4:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:37.5391598-06:00:Thread#0:TestItem#4:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:37.5391768-06:00:Thread#0:Scheduler: using testitem #4 for thread 0
+2021-04-30T16:35:37.5404223-06:00:Thread#0:Scheduler: Test #4 is scheduled for thread
+2021-04-30T16:35:37.5499001-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:37.5567339-06:00:Thread #0: creating new test thread executor for subwaySpecflow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null (target: Default)
+2021-04-30T16:35:37.5630726-06:00:Thread #0: Creating test assembly executor for execution model OutProc
+2021-04-30T16:35:37.5634887-06:00:Thread #0: Creating test assembly executor for execution model OutProc
+2021-04-30T16:35:37.5692254-06:00:Thread #0: using TechTalk.SpecRun.Framework.Execution.OutOfProc.StreamJsonRPC.OutOfProcessTestAssemblyExecutorHost to execute tests
+2021-04-30T16:35:37.5757464-06:00:starting Out Of Process Executor
+2021-04-30T16:35:37.5803765-06:00:Assembly resolving Microsoft.VisualStudio.Validation, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2021-04-30T16:35:37.5856509-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' from .deps.json file
+2021-04-30T16:35:37.5857827-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' from .deps.json
+2021-04-30T16:35:37.5882131-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0'
+2021-04-30T16:35:37.5889801-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\Microsoft.VisualStudio.Validation.dll'
+2021-04-30T16:35:37.5892447-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\Microsoft.VisualStudio.Validation.exe'
+2021-04-30T16:35:37.5893823-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0'
+2021-04-30T16:35:37.5898758-06:00:TargetFramework: .NETCoreApp,Version=v5.0
+2021-04-30T16:35:37.5909775-06:00:Tfm: netcoreapp5.0
+2021-04-30T16:35:37.5910023-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2021-04-30T16:35:37.5910107-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Validation.dll'
+2021-04-30T16:35:37.5912194-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Validation.exe'
+2021-04-30T16:35:37.5913504-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2021-04-30T16:35:37.6025922-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4'
+2021-04-30T16:35:37.6026424-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4\Microsoft.VisualStudio.Validation.dll'
+2021-04-30T16:35:37.6028100-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4\Microsoft.VisualStudio.Validation.exe'
+2021-04-30T16:35:37.6029180-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4'
+2021-04-30T16:35:37.6033127-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.4'
+2021-04-30T16:35:37.6033222-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.4\Microsoft.VisualStudio.Validation.dll'
+2021-04-30T16:35:37.6034142-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.4\Microsoft.VisualStudio.Validation.exe'
+2021-04-30T16:35:37.6034915-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.4'
+2021-04-30T16:35:37.6038220-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.4'
+2021-04-30T16:35:37.6038359-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.4\Microsoft.VisualStudio.Validation.dll'
+2021-04-30T16:35:37.6040230-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Validation' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.4\Microsoft.VisualStudio.Validation.exe'
+2021-04-30T16:35:37.6041760-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Validation' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.4'
+2021-04-30T16:35:37.6101156-06:00:Starting callback TCP Rpc server
+2021-04-30T16:35:37.6458673-06:00:Asynchronously starting background TCP Rpc Server on port 32768
+2021-04-30T16:35:37.6459477-06:00:Started callback TCP Rpc server on port 32768
+2021-04-30T16:35:37.6459566-06:00:Starting logger TCP Rpc server
+2021-04-30T16:35:37.6492370-06:00:Asynchronously starting background TCP Rpc Server on port 32769
+2021-04-30T16:35:37.6492842-06:00:Started logger TCP Rpc server on port 32769
+2021-04-30T16:35:37.8154794-06:00:Executing test executor at 'dotnet' 'exec "C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\net5.0\TechTalk.SpecRun.Framework.Executor.anycpu.net5_0.dll" --remoteRunnerPid 14588 --uniqueId "2021-04-30T163536" --outputFolder "C:\Users\hojay\Source\Repos\newSubway\TestResults" --callbackPort 32768 --loggerPort 32769' in 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0'
+2021-04-30T16:35:37.8302352-06:00:Executor with PID 7372 has been started successfully.
+2021-04-30T16:35:37.8395670-06:00:Out of Process Executor 7372 started
+2021-04-30T16:35:37.8396024-06:00:Waiting for endpoint
+2021-04-30T16:35:38.5084125-06:00:Assembly resolving Microsoft.VisualStudio.Threading, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2021-04-30T16:35:38.5084492-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' from .deps.json file
+2021-04-30T16:35:38.5084566-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' from .deps.json
+2021-04-30T16:35:38.5084703-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0'
+2021-04-30T16:35:38.5084754-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\Microsoft.VisualStudio.Threading.dll'
+2021-04-30T16:35:38.5085912-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\Microsoft.VisualStudio.Threading.exe'
+2021-04-30T16:35:38.5087197-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0'
+2021-04-30T16:35:38.5087294-06:00:TargetFramework: .NETCoreApp,Version=v5.0
+2021-04-30T16:35:38.5087674-06:00:Tfm: netcoreapp5.0
+2021-04-30T16:35:38.5087765-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2021-04-30T16:35:38.5087816-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Threading.dll'
+2021-04-30T16:35:38.5089209-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0\Microsoft.VisualStudio.Threading.exe'
+2021-04-30T16:35:38.5090428-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecFlowPlusRunner\netcoreapp5.0'
+2021-04-30T16:35:38.5099815-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4'
+2021-04-30T16:35:38.5100051-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4\Microsoft.VisualStudio.Threading.dll'
+2021-04-30T16:35:38.5101713-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4\Microsoft.VisualStudio.Threading.exe'
+2021-04-30T16:35:38.5102932-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\5.0.4'
+2021-04-30T16:35:38.5106167-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.4'
+2021-04-30T16:35:38.5106362-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.4\Microsoft.VisualStudio.Threading.dll'
+2021-04-30T16:35:38.5107575-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.4\Microsoft.VisualStudio.Threading.exe'
+2021-04-30T16:35:38.5108678-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.NETCore.App\5.0.4'
+2021-04-30T16:35:38.5112143-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.4'
+2021-04-30T16:35:38.5112332-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.4\Microsoft.VisualStudio.Threading.dll'
+2021-04-30T16:35:38.5113739-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.Threading' to 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.4\Microsoft.VisualStudio.Threading.exe'
+2021-04-30T16:35:38.5114894-06:00:[AssemblyCache] Could not resolve 'Microsoft.VisualStudio.Threading' in folder 'C:\Program Files\dotnet\shared\Microsoft.WindowsDesktop.App\5.0.4'
+2021-04-30T16:35:39.0306880-06:00:Remote executor port received: 32770
+2021-04-30T16:35:39.0320330-06:00:Creating executor TCP client on port 32770
+2021-04-30T16:35:39.0329035-06:00:Created executor TCP client on port 32770
+2021-04-30T16:35:39.0329235-06:00:Connecting to remote executor TCP server
+2021-04-30T16:35:39.0354749-06:00:Connected remote executor TCP server
+2021-04-30T16:35:39.0360916-06:00:trying to connect to Out of Process Executor the 1 attempt
+2021-04-30T16:35:39.0361187-06:00:Connection to Out of Process Executor established in the 1 attempt
+2021-04-30T16:35:39.3873825-06:00:2021-04-30T16:35:39.3682934-06:00:OutOfProcessTestAssemblyExecutor: initialized for C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwaySpecflow.dll on test thread #0
+2021-04-30T16:35:39.3968260-06:00:Endpoint 7372 started
+2021-04-30T16:35:39.4351791-06:00:2021-04-30T16:35:39.4343843-06:00:OutOfProcessTestAssemblyExecutor: running tests...
+2021-04-30T16:35:39.7639678-06:00:2021-04-30T16:35:39.7088290-06:00:Assembly resolving TechTalk.SpecFlow, Version=3.7.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41
+2021-04-30T16:35:39.8247893-06:00:2021-04-30T16:35:39.7704806-06:00:[AssemblyCache] Trying to resolve 'TechTalk.SpecFlow' from .deps.json file
+2021-04-30T16:35:39.8885006-06:00:2021-04-30T16:35:39.8304467-06:00:[AssemblyCache] Resolved 'TechTalk.SpecFlow' to 'C:\Users\hojay\.nuget\packages\specflow\3.7.13\lib\netstandard2.0\TechTalk.SpecFlow.dll'
+2021-04-30T16:35:40.0747547-06:00:2021-04-30T16:35:40.0697820-06:00:Thread#0:T:-> Loading plugin C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwaySpecflow.dll
+2021-04-30T16:35:40.0937785-06:00:2021-04-30T16:35:40.0772263-06:00:Assembly resolving Microsoft.Extensions.DependencyModel, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2021-04-30T16:35:40.0997792-06:00:2021-04-30T16:35:40.0941759-06:00:[AssemblyCache] Trying to resolve 'Microsoft.Extensions.DependencyModel' from .deps.json file
+2021-04-30T16:35:40.1041019-06:00:2021-04-30T16:35:40.1004565-06:00:[AssemblyCache] Resolved 'Microsoft.Extensions.DependencyModel' to 'C:\Users\hojay\.nuget\packages\microsoft.extensions.dependencymodel\1.0.3\lib\netstandard1.6\Microsoft.Extensions.DependencyModel.dll'
+2021-04-30T16:35:40.1833631-06:00:2021-04-30T16:35:40.1815643-06:00:Assembly resolving Microsoft.DotNet.PlatformAbstractions, Version=1.0.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2021-04-30T16:35:40.1881232-06:00:2021-04-30T16:35:40.1838314-06:00:[AssemblyCache] Trying to resolve 'Microsoft.DotNet.PlatformAbstractions' from .deps.json file
+2021-04-30T16:35:40.2178905-06:00:2021-04-30T16:35:40.1891431-06:00:[AssemblyCache] Resolved 'Microsoft.DotNet.PlatformAbstractions' to 'C:\Users\hojay\.nuget\packages\microsoft.dotnet.platformabstractions\1.0.3\lib\netstandard1.3\Microsoft.DotNet.PlatformAbstractions.dll'
+2021-04-30T16:35:40.2420083-06:00:2021-04-30T16:35:40.2299529-06:00:Thread#0:T:-> Missing [assembly:RuntimePlugin] attribute in subwaySpecflow, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null. Please check https://go.specflow.org/doc-plugins for details.
+2021-04-30T16:35:40.2531040-06:00:2021-04-30T16:35:40.2426831-06:00:Thread#0:T:-> Loading plugin C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\LivingDoc.SpecFlowPlugin.dll
+2021-04-30T16:35:40.2615607-06:00:2021-04-30T16:35:40.2572439-06:00:Assembly resolving LivingDoc.Dtos, Version=3.7.0.0, Culture=neutral, PublicKeyToken=null
+2021-04-30T16:35:40.2624437-06:00:2021-04-30T16:35:40.2620375-06:00:[AssemblyCache] Trying to resolve 'LivingDoc.Dtos' from .deps.json file
+2021-04-30T16:35:40.2638989-06:00:2021-04-30T16:35:40.2634226-06:00:[AssemblyCache] Resolved 'LivingDoc.Dtos' to 'C:\Users\hojay\.nuget\packages\specflow.plus.livingdocplugin\3.7.141\lib\netstandard2.0\LivingDoc.Dtos.dll'
+2021-04-30T16:35:40.2694670-06:00:2021-04-30T16:35:40.2689390-06:00:Thread#0:T:-> Loading plugin C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\SpecRun.Runtime.SpecFlowPlugin.dll
+2021-04-30T16:35:40.2874085-06:00:2021-04-30T16:35:40.2868580-06:00:Thread#0:T:-> Using default config
+2021-04-30T16:35:40.3152660-06:00:2021-04-30T16:35:40.3147124-06:00:Assembly resolving Cucumber.Messages, Version=6.0.1.0, Culture=neutral, PublicKeyToken=b10c5988214f940c
+2021-04-30T16:35:40.3160236-06:00:2021-04-30T16:35:40.3157336-06:00:[AssemblyCache] Trying to resolve 'Cucumber.Messages' from .deps.json file
+2021-04-30T16:35:40.3170693-06:00:2021-04-30T16:35:40.3166585-06:00:[AssemblyCache] Resolved 'Cucumber.Messages' to 'C:\Users\hojay\.nuget\packages\cucumber.messages\6.0.1\lib\netstandard2.0\Cucumber.Messages.dll'
+2021-04-30T16:35:40.3198637-06:00:2021-04-30T16:35:40.3193411-06:00:Assembly resolving Google.Protobuf, Version=3.7.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604
+2021-04-30T16:35:40.3206908-06:00:2021-04-30T16:35:40.3202963-06:00:[AssemblyCache] Trying to resolve 'Google.Protobuf' from .deps.json file
+2021-04-30T16:35:40.3216768-06:00:2021-04-30T16:35:40.3212645-06:00:[AssemblyCache] Resolved 'Google.Protobuf' to 'C:\Users\hojay\.nuget\packages\google.protobuf\3.7.0\lib\netstandard1.0\Google.Protobuf.dll'
+2021-04-30T16:35:40.3403555-06:00:2021-04-30T16:35:40.3396964-06:00:Assembly resolving Microsoft.VisualStudio.TestPlatform.ObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+2021-04-30T16:35:41.2990293-06:00:2021-04-30T16:35:40.3408932-06:00:[AssemblyCache] Trying to resolve 'Microsoft.VisualStudio.TestPlatform.ObjectModel' from .deps.json file
+2021-04-30T16:35:41.3798348-06:00:2021-04-30T16:35:41.3029498-06:00:[AssemblyCache] Resolved 'Microsoft.VisualStudio.TestPlatform.ObjectModel' to 'C:\Users\hojay\.nuget\packages\microsoft.testplatform.objectmodel\16.5.0\lib\netstandard2.0\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll'
+2021-04-30T16:35:41.5597727-06:00:2021-04-30T16:35:41.5096376-06:00:Assembly resolving Utf8Json, Version=1.3.7.0, Culture=neutral, PublicKeyToken=8a73d3ba7e392e27
+2021-04-30T16:35:41.6221888-06:00:2021-04-30T16:35:41.5604375-06:00:[AssemblyCache] Trying to resolve 'Utf8Json' from .deps.json file
+2021-04-30T16:35:41.6333547-06:00:2021-04-30T16:35:41.6233605-06:00:[AssemblyCache] Resolved 'Utf8Json' to 'C:\Users\hojay\.nuget\packages\utf8json\1.3.7\lib\netstandard2.0\Utf8Json.dll'
+2021-04-30T16:35:42.0954186-06:00:Thread#0: Test #4/0 is started on thread #0
+2021-04-30T16:35:42.1757616-06:00:2021-04-30T16:35:42.1750798-06:00:Thread#0:B:Given PBJ with Wheat
+2021-04-30T16:35:42.2092552-06:00:2021-04-30T16:35:42.2088282-06:00:Assembly resolving Gherkin, Version=6.0.0.0, Culture=neutral, PublicKeyToken=86496cfa5b4a5851
+2021-04-30T16:35:42.2099241-06:00:2021-04-30T16:35:42.2096075-06:00:[AssemblyCache] Trying to resolve 'Gherkin' from .deps.json file
+2021-04-30T16:35:42.2107472-06:00:2021-04-30T16:35:42.2104640-06:00:[AssemblyCache] Resolved 'Gherkin' to 'C:\Users\hojay\.nuget\packages\gherkin\6.0.0\lib\netstandard2.0\Gherkin.dll'
+2021-04-30T16:35:42.3023790-06:00:2021-04-30T16:35:42.3018362-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.3031210-06:00:2021-04-30T16:35:42.3027775-06:00:Thread#0:T:        [Given(@"PBJ with Wheat")]
+2021-04-30T16:35:42.3037381-06:00:2021-04-30T16:35:42.3034488-06:00:Thread#0:T:        public void GivenPBJWithWheat()
+2021-04-30T16:35:42.3043587-06:00:2021-04-30T16:35:42.3040323-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.3049774-06:00:2021-04-30T16:35:42.3046445-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.3056538-06:00:2021-04-30T16:35:42.3052962-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.3094643-06:00:2021-04-30T16:35:42.3089355-06:00:Thread#0:B:Then the cost should be 3.00
+2021-04-30T16:35:42.3561789-06:00:2021-04-30T16:35:42.3334764-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.3571857-06:00:2021-04-30T16:35:42.3567557-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.3578091-06:00:2021-04-30T16:35:42.3575158-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.3584378-06:00:2021-04-30T16:35:42.3581439-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.3592196-06:00:2021-04-30T16:35:42.3588010-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.3599037-06:00:2021-04-30T16:35:42.3595503-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.4548216-06:00:2021-04-30T16:35:42.4542053-06:00:Thread#0:T:Pending: No matching step definition found for one or more steps.
+2021-04-30T16:35:42.4556365-06:00:2021-04-30T16:35:42.4552352-06:00:Thread#0:T:using System;
+2021-04-30T16:35:42.4563551-06:00:2021-04-30T16:35:42.4560647-06:00:Thread#0:T:using TechTalk.SpecFlow;
+2021-04-30T16:35:42.4573477-06:00:2021-04-30T16:35:42.4567514-06:00:Thread#0:T:namespace MyNamespace
+2021-04-30T16:35:42.4581306-06:00:2021-04-30T16:35:42.4576924-06:00:Thread#0:T:{
+2021-04-30T16:35:42.4588257-06:00:2021-04-30T16:35:42.4584248-06:00:Thread#0:T:    [Binding]
+2021-04-30T16:35:42.4595954-06:00:2021-04-30T16:35:42.4591483-06:00:Thread#0:T:    public class StepDefinitions
+2021-04-30T16:35:42.4607362-06:00:2021-04-30T16:35:42.4600793-06:00:Thread#0:T:    {
+2021-04-30T16:35:42.4618778-06:00:2021-04-30T16:35:42.4611869-06:00:Thread#0:T:        private readonly ScenarioContext _scenarioContext;
+2021-04-30T16:35:42.4629187-06:00:2021-04-30T16:35:42.4624018-06:00:Thread#0:T:        public StepDefinitions(ScenarioContext scenarioContext)
+2021-04-30T16:35:42.4636641-06:00:2021-04-30T16:35:42.4632591-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.4644265-06:00:2021-04-30T16:35:42.4640387-06:00:Thread#0:T:            _scenarioContext = scenarioContext;
+2021-04-30T16:35:42.4651906-06:00:2021-04-30T16:35:42.4648281-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.4660030-06:00:2021-04-30T16:35:42.4655830-06:00:Thread#0:T:        [Given(@"PBJ with Wheat")]
+2021-04-30T16:35:42.4667266-06:00:2021-04-30T16:35:42.4663878-06:00:Thread#0:T:        public void GivenPBJWithWheat()
+2021-04-30T16:35:42.4674251-06:00:2021-04-30T16:35:42.4670732-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.4681159-06:00:2021-04-30T16:35:42.4678142-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.4689814-06:00:2021-04-30T16:35:42.4685464-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.4697782-06:00:2021-04-30T16:35:42.4694414-06:00:Thread#0:T:        
+2021-04-30T16:35:42.4705022-06:00:2021-04-30T16:35:42.4700925-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.4712331-06:00:2021-04-30T16:35:42.4709264-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.4720086-06:00:2021-04-30T16:35:42.4716039-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.4729244-06:00:2021-04-30T16:35:42.4723614-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.4738183-06:00:2021-04-30T16:35:42.4733998-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.4745773-06:00:2021-04-30T16:35:42.4741871-06:00:Thread#0:T:    }
+2021-04-30T16:35:42.4754064-06:00:2021-04-30T16:35:42.4749592-06:00:Thread#0:T:}
+2021-04-30T16:35:42.4911131-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:42.4911705-06:00:Thread#:Scheduler: testitem #5 from normal test queue 
+2021-04-30T16:35:42.4911752-06:00:Thread#0:Scheduler: considering testitem #5 for thread 0
+2021-04-30T16:35:42.4913015-06:00:Thread#0:TestItem#5:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:42.4913071-06:00:Thread#0:TestItem#5:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:42.4913099-06:00:Thread#0:TestItem#5:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:42.4913133-06:00:Thread#0:Scheduler: using testitem #5 for thread 0
+2021-04-30T16:35:42.4913501-06:00:Thread#0:Scheduler: Test #5 is scheduled for thread
+2021-04-30T16:35:42.4913836-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:42.5872964-06:00:Thread#0: Test #4/0 is finished on thread #0 as Pending within 0.4896478 seconds
+2021-04-30T16:35:42.5922728-06:00:Thread#0: Test #5/0 is started on thread #0
+2021-04-30T16:35:42.5967469-06:00:2021-04-30T16:35:42.5961230-06:00:Thread#0:B:Given PBJ with White
+2021-04-30T16:35:42.6102128-06:00:2021-04-30T16:35:42.6094383-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.6116134-06:00:2021-04-30T16:35:42.6109949-06:00:Thread#0:T:        [Given(@"PBJ with White")]
+2021-04-30T16:35:42.6128107-06:00:2021-04-30T16:35:42.6121158-06:00:Thread#0:T:        public void GivenPBJWithWhite()
+2021-04-30T16:35:42.6143481-06:00:2021-04-30T16:35:42.6136094-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.6150824-06:00:2021-04-30T16:35:42.6146904-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.6159972-06:00:2021-04-30T16:35:42.6154393-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.6173252-06:00:2021-04-30T16:35:42.6166701-06:00:Thread#0:B:Then the cost should be 2.75
+2021-04-30T16:35:42.6227447-06:00:2021-04-30T16:35:42.6222633-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.6237805-06:00:2021-04-30T16:35:42.6232704-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.6246205-06:00:2021-04-30T16:35:42.6241452-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.6253998-06:00:2021-04-30T16:35:42.6249589-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.6262226-06:00:2021-04-30T16:35:42.6257541-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.6269600-06:00:2021-04-30T16:35:42.6265727-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.6602724-06:00:2021-04-30T16:35:42.6595424-06:00:Thread#0:T:Pending: No matching step definition found for one or more steps.
+2021-04-30T16:35:42.6615523-06:00:2021-04-30T16:35:42.6609500-06:00:Thread#0:T:using System;
+2021-04-30T16:35:42.6624674-06:00:2021-04-30T16:35:42.6620109-06:00:Thread#0:T:using TechTalk.SpecFlow;
+2021-04-30T16:35:42.6633126-06:00:2021-04-30T16:35:42.6627888-06:00:Thread#0:T:namespace MyNamespace
+2021-04-30T16:35:42.6640647-06:00:2021-04-30T16:35:42.6636409-06:00:Thread#0:T:{
+2021-04-30T16:35:42.6647662-06:00:2021-04-30T16:35:42.6643284-06:00:Thread#0:T:    [Binding]
+2021-04-30T16:35:42.6654760-06:00:2021-04-30T16:35:42.6650773-06:00:Thread#0:T:    public class StepDefinitions
+2021-04-30T16:35:42.6661756-06:00:2021-04-30T16:35:42.6657542-06:00:Thread#0:T:    {
+2021-04-30T16:35:42.6668564-06:00:2021-04-30T16:35:42.6664785-06:00:Thread#0:T:        private readonly ScenarioContext _scenarioContext;
+2021-04-30T16:35:42.6675694-06:00:2021-04-30T16:35:42.6671494-06:00:Thread#0:T:        public StepDefinitions(ScenarioContext scenarioContext)
+2021-04-30T16:35:42.6682772-06:00:2021-04-30T16:35:42.6679714-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.6690330-06:00:2021-04-30T16:35:42.6686329-06:00:Thread#0:T:            _scenarioContext = scenarioContext;
+2021-04-30T16:35:42.6697012-06:00:2021-04-30T16:35:42.6693995-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.6705852-06:00:2021-04-30T16:35:42.6700947-06:00:Thread#0:T:        [Given(@"PBJ with White")]
+2021-04-30T16:35:42.6714971-06:00:2021-04-30T16:35:42.6710023-06:00:Thread#0:T:        public void GivenPBJWithWhite()
+2021-04-30T16:35:42.6723550-06:00:2021-04-30T16:35:42.6720321-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.6730008-06:00:2021-04-30T16:35:42.6727119-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.6736088-06:00:2021-04-30T16:35:42.6733228-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.6744049-06:00:2021-04-30T16:35:42.6739633-06:00:Thread#0:T:        
+2021-04-30T16:35:42.6754045-06:00:2021-04-30T16:35:42.6747588-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.6762282-06:00:2021-04-30T16:35:42.6758747-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.6769099-06:00:2021-04-30T16:35:42.6765023-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.6777253-06:00:2021-04-30T16:35:42.6772688-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.6784849-06:00:2021-04-30T16:35:42.6780569-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.6792058-06:00:2021-04-30T16:35:42.6788163-06:00:Thread#0:T:    }
+2021-04-30T16:35:42.6799497-06:00:2021-04-30T16:35:42.6795296-06:00:Thread#0:T:}
+2021-04-30T16:35:42.6818344-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:42.6818659-06:00:Thread#:Scheduler: testitem #6 from normal test queue 
+2021-04-30T16:35:42.6818756-06:00:Thread#0:Scheduler: considering testitem #6 for thread 0
+2021-04-30T16:35:42.6819207-06:00:Thread#0:TestItem#6:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:42.6819286-06:00:Thread#0:TestItem#6:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:42.6819346-06:00:Thread#0:TestItem#6:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:42.6819418-06:00:Thread#0:Scheduler: using testitem #6 for thread 0
+2021-04-30T16:35:42.6819672-06:00:Thread#0:Scheduler: Test #6 is scheduled for thread
+2021-04-30T16:35:42.6819939-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:42.6846934-06:00:Thread#0: Test #5/0 is finished on thread #0 as Pending within 0.0923407 seconds
+2021-04-30T16:35:42.6859187-06:00:Thread#0: Test #6/0 is started on thread #0
+2021-04-30T16:35:42.6894964-06:00:2021-04-30T16:35:42.6888028-06:00:Thread#0:B:Given PBJ with Rye
+2021-04-30T16:35:42.6967897-06:00:2021-04-30T16:35:42.6960792-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.6977191-06:00:2021-04-30T16:35:42.6972735-06:00:Thread#0:T:        [Given(@"PBJ with Rye")]
+2021-04-30T16:35:42.6985511-06:00:2021-04-30T16:35:42.6981444-06:00:Thread#0:T:        public void GivenPBJWithRye()
+2021-04-30T16:35:42.6993366-06:00:2021-04-30T16:35:42.6990103-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.7000679-06:00:2021-04-30T16:35:42.6997055-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.7007369-06:00:2021-04-30T16:35:42.7004371-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.7016158-06:00:2021-04-30T16:35:42.7012510-06:00:Thread#0:B:Then the cost should be 2.5
+2021-04-30T16:35:42.7088727-06:00:2021-04-30T16:35:42.7082531-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.7098907-06:00:2021-04-30T16:35:42.7094458-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.7109063-06:00:2021-04-30T16:35:42.7103411-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.7118867-06:00:2021-04-30T16:35:42.7113645-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.7126551-06:00:2021-04-30T16:35:42.7121981-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.7133360-06:00:2021-04-30T16:35:42.7129661-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.7322847-06:00:2021-04-30T16:35:42.7316538-06:00:Thread#0:T:Pending: No matching step definition found for one or more steps.
+2021-04-30T16:35:42.7331406-06:00:2021-04-30T16:35:42.7327275-06:00:Thread#0:T:using System;
+2021-04-30T16:35:42.7338847-06:00:2021-04-30T16:35:42.7335495-06:00:Thread#0:T:using TechTalk.SpecFlow;
+2021-04-30T16:35:42.7345304-06:00:2021-04-30T16:35:42.7341890-06:00:Thread#0:T:namespace MyNamespace
+2021-04-30T16:35:42.7353249-06:00:2021-04-30T16:35:42.7348823-06:00:Thread#0:T:{
+2021-04-30T16:35:42.7360781-06:00:2021-04-30T16:35:42.7356749-06:00:Thread#0:T:    [Binding]
+2021-04-30T16:35:42.7371180-06:00:2021-04-30T16:35:42.7364289-06:00:Thread#0:T:    public class StepDefinitions
+2021-04-30T16:35:42.7380606-06:00:2021-04-30T16:35:42.7376135-06:00:Thread#0:T:    {
+2021-04-30T16:35:42.7387847-06:00:2021-04-30T16:35:42.7383615-06:00:Thread#0:T:        private readonly ScenarioContext _scenarioContext;
+2021-04-30T16:35:42.7396707-06:00:2021-04-30T16:35:42.7391763-06:00:Thread#0:T:        public StepDefinitions(ScenarioContext scenarioContext)
+2021-04-30T16:35:42.7404215-06:00:2021-04-30T16:35:42.7400116-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.7411105-06:00:2021-04-30T16:35:42.7408008-06:00:Thread#0:T:            _scenarioContext = scenarioContext;
+2021-04-30T16:35:42.7417569-06:00:2021-04-30T16:35:42.7414521-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.7425980-06:00:2021-04-30T16:35:42.7421488-06:00:Thread#0:T:        [Given(@"PBJ with Rye")]
+2021-04-30T16:35:42.7434030-06:00:2021-04-30T16:35:42.7430050-06:00:Thread#0:T:        public void GivenPBJWithRye()
+2021-04-30T16:35:42.7444441-06:00:2021-04-30T16:35:42.7437796-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.7452531-06:00:2021-04-30T16:35:42.7447949-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.7459862-06:00:2021-04-30T16:35:42.7455738-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.7467592-06:00:2021-04-30T16:35:42.7463722-06:00:Thread#0:T:        
+2021-04-30T16:35:42.7475878-06:00:2021-04-30T16:35:42.7470895-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.7483379-06:00:2021-04-30T16:35:42.7478650-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.7492339-06:00:2021-04-30T16:35:42.7486817-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.7500713-06:00:2021-04-30T16:35:42.7495627-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.7510390-06:00:2021-04-30T16:35:42.7504888-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.7518043-06:00:2021-04-30T16:35:42.7513779-06:00:Thread#0:T:    }
+2021-04-30T16:35:42.7530625-06:00:2021-04-30T16:35:42.7521349-06:00:Thread#0:T:}
+2021-04-30T16:35:42.7549925-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:42.7550196-06:00:Thread#:Scheduler: testitem #7 from normal test queue 
+2021-04-30T16:35:42.7550288-06:00:Thread#0:Scheduler: considering testitem #7 for thread 0
+2021-04-30T16:35:42.7550605-06:00:Thread#0:TestItem#7:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:42.7550666-06:00:Thread#0:TestItem#7:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:42.7550708-06:00:Thread#0:TestItem#7:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:42.7550754-06:00:Thread#0:Scheduler: using testitem #7 for thread 0
+2021-04-30T16:35:42.7550966-06:00:Thread#0:Scheduler: Test #7 is scheduled for thread
+2021-04-30T16:35:42.7551315-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:42.7624060-06:00:Thread#0: Test #6/0 is finished on thread #0 as Pending within 0.0764052 seconds
+2021-04-30T16:35:42.7648357-06:00:Thread#0: Test #7/0 is started on thread #0
+2021-04-30T16:35:42.7695509-06:00:2021-04-30T16:35:42.7682662-06:00:Thread#0:B:Given Shredded chicken with Rye bread
+2021-04-30T16:35:42.7968281-06:00:2021-04-30T16:35:42.7962441-06:00:Assembly resolving subwayProject, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+2021-04-30T16:35:42.7975935-06:00:2021-04-30T16:35:42.7972119-06:00:[AssemblyCache] Trying to resolve 'subwayProject' from .deps.json file
+2021-04-30T16:35:42.7993755-06:00:2021-04-30T16:35:42.7989257-06:00:[DependencyContextAssemblyCache.ResolveManagedAssembly] Resolving 'subwayProject', found in dependency map, but unable to resolve a path in ['subwayProject.dll']
+2021-04-30T16:35:42.8002182-06:00:2021-04-30T16:35:42.7998239-06:00:[AssemblyCache] Could not resolve 'subwayProject' from .deps.json
+2021-04-30T16:35:42.8036793-06:00:2021-04-30T16:35:42.8031262-06:00:[AssemblyCache] Trying to resolve 'subwayProject' in folder 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0'
+2021-04-30T16:35:42.8053238-06:00:2021-04-30T16:35:42.8049031-06:00:[AssemblyCache] Trying to resolve 'subwayProject' to 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwayProject.dll'
+2021-04-30T16:35:42.8062708-06:00:2021-04-30T16:35:42.8058782-06:00:[AssemblyCache] Found file 'C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwayProject.dll' for assembly 'subwayProject'
+2021-04-30T16:35:42.8086426-06:00:2021-04-30T16:35:42.8080960-06:00:[AssemblyCache] Resolved 'subwayProject' to C:\Users\hojay\Source\Repos\subwaySpecflow\bin\Debug\net5.0\subwayProject.dll
+2021-04-30T16:35:42.8163287-06:00:2021-04-30T16:35:42.8152371-06:00:Thread#0:T:done: Subway.PBJcalc("Shredded chicken", "Rye") (0.0s)
+2021-04-30T16:35:42.8184218-06:00:2021-04-30T16:35:42.8179685-06:00:Thread#0:B:Then the cost should be 4.50
+2021-04-30T16:35:42.8231364-06:00:2021-04-30T16:35:42.8226214-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.8239165-06:00:2021-04-30T16:35:42.8235569-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.8245485-06:00:2021-04-30T16:35:42.8242029-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.8252309-06:00:2021-04-30T16:35:42.8248699-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.8742057-06:00:2021-04-30T16:35:42.8255403-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.8751825-06:00:2021-04-30T16:35:42.8747065-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.8877974-06:00:2021-04-30T16:35:42.8872427-06:00:Thread#0:T:Pending: No matching step definition found for one or more steps.
+2021-04-30T16:35:42.8885051-06:00:2021-04-30T16:35:42.8881610-06:00:Thread#0:T:using System;
+2021-04-30T16:35:42.8891876-06:00:2021-04-30T16:35:42.8888529-06:00:Thread#0:T:using TechTalk.SpecFlow;
+2021-04-30T16:35:42.8899522-06:00:2021-04-30T16:35:42.8894863-06:00:Thread#0:T:namespace MyNamespace
+2021-04-30T16:35:42.8907133-06:00:2021-04-30T16:35:42.8902822-06:00:Thread#0:T:{
+2021-04-30T16:35:42.8913970-06:00:2021-04-30T16:35:42.8910566-06:00:Thread#0:T:    [Binding]
+2021-04-30T16:35:42.8920420-06:00:2021-04-30T16:35:42.8917526-06:00:Thread#0:T:    public class StepDefinitions
+2021-04-30T16:35:42.8927507-06:00:2021-04-30T16:35:42.8923734-06:00:Thread#0:T:    {
+2021-04-30T16:35:42.8934354-06:00:2021-04-30T16:35:42.8930476-06:00:Thread#0:T:        private readonly ScenarioContext _scenarioContext;
+2021-04-30T16:35:42.8956261-06:00:2021-04-30T16:35:42.8948094-06:00:Thread#0:T:        public StepDefinitions(ScenarioContext scenarioContext)
+2021-04-30T16:35:42.8966714-06:00:2021-04-30T16:35:42.8961673-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.8974182-06:00:2021-04-30T16:35:42.8969932-06:00:Thread#0:T:            _scenarioContext = scenarioContext;
+2021-04-30T16:35:42.8980964-06:00:2021-04-30T16:35:42.8977769-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.8987637-06:00:2021-04-30T16:35:42.8983957-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.8995403-06:00:2021-04-30T16:35:42.8991254-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.9002658-06:00:2021-04-30T16:35:42.8998611-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.9010087-06:00:2021-04-30T16:35:42.9006136-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.9016305-06:00:2021-04-30T16:35:42.9013366-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.9023808-06:00:2021-04-30T16:35:42.9019586-06:00:Thread#0:T:    }
+2021-04-30T16:35:42.9030680-06:00:2021-04-30T16:35:42.9027174-06:00:Thread#0:T:}
+2021-04-30T16:35:42.9047530-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:42.9047740-06:00:Thread#:Scheduler: testitem #8 from normal test queue 
+2021-04-30T16:35:42.9047783-06:00:Thread#0:Scheduler: considering testitem #8 for thread 0
+2021-04-30T16:35:42.9047998-06:00:Thread#0:TestItem#8:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:42.9048084-06:00:Thread#0:TestItem#8:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:42.9048114-06:00:Thread#0:TestItem#8:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:42.9048143-06:00:Thread#0:Scheduler: using testitem #8 for thread 0
+2021-04-30T16:35:42.9048439-06:00:Thread#0:Scheduler: Test #8 is scheduled for thread
+2021-04-30T16:35:42.9048594-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:42.9092327-06:00:Thread#0: Test #7/0 is finished on thread #0 as Pending within 0.1443271 seconds
+2021-04-30T16:35:42.9121259-06:00:Thread#0: Test #8/0 is started on thread #0
+2021-04-30T16:35:42.9167902-06:00:2021-04-30T16:35:42.9163152-06:00:Thread#0:B:Given Shredded chicken with white bread
+2021-04-30T16:35:42.9183260-06:00:2021-04-30T16:35:42.9178613-06:00:Thread#0:T:done: Subway.PBJcalc("Shredded chicken", "white") (0.0s)
+2021-04-30T16:35:42.9191880-06:00:2021-04-30T16:35:42.9188264-06:00:Thread#0:B:Then the cost should be 4.0
+2021-04-30T16:35:42.9237331-06:00:2021-04-30T16:35:42.9232042-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.9244446-06:00:2021-04-30T16:35:42.9240889-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.9251408-06:00:2021-04-30T16:35:42.9248039-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.9263641-06:00:2021-04-30T16:35:42.9254476-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.9281163-06:00:2021-04-30T16:35:42.9271604-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.9289585-06:00:2021-04-30T16:35:42.9285275-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.9397929-06:00:2021-04-30T16:35:42.9392072-06:00:Thread#0:T:Pending: No matching step definition found for one or more steps.
+2021-04-30T16:35:42.9410753-06:00:2021-04-30T16:35:42.9402500-06:00:Thread#0:T:using System;
+2021-04-30T16:35:42.9424740-06:00:2021-04-30T16:35:42.9418494-06:00:Thread#0:T:using TechTalk.SpecFlow;
+2021-04-30T16:35:42.9432775-06:00:2021-04-30T16:35:42.9428856-06:00:Thread#0:T:namespace MyNamespace
+2021-04-30T16:35:42.9441168-06:00:2021-04-30T16:35:42.9436493-06:00:Thread#0:T:{
+2021-04-30T16:35:42.9448924-06:00:2021-04-30T16:35:42.9444513-06:00:Thread#0:T:    [Binding]
+2021-04-30T16:35:42.9455654-06:00:2021-04-30T16:35:42.9451803-06:00:Thread#0:T:    public class StepDefinitions
+2021-04-30T16:35:42.9461394-06:00:2021-04-30T16:35:42.9458071-06:00:Thread#0:T:    {
+2021-04-30T16:35:42.9467441-06:00:2021-04-30T16:35:42.9464247-06:00:Thread#0:T:        private readonly ScenarioContext _scenarioContext;
+2021-04-30T16:35:42.9473426-06:00:2021-04-30T16:35:42.9469866-06:00:Thread#0:T:        public StepDefinitions(ScenarioContext scenarioContext)
+2021-04-30T16:35:42.9480087-06:00:2021-04-30T16:35:42.9476309-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.9486593-06:00:2021-04-30T16:35:42.9482875-06:00:Thread#0:T:            _scenarioContext = scenarioContext;
+2021-04-30T16:35:42.9493698-06:00:2021-04-30T16:35:42.9490305-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.9501853-06:00:2021-04-30T16:35:42.9496758-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.9518543-06:00:2021-04-30T16:35:42.9512664-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.9528677-06:00:2021-04-30T16:35:42.9522117-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.9548424-06:00:2021-04-30T16:35:42.9541771-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.9562070-06:00:2021-04-30T16:35:42.9554288-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.9571847-06:00:2021-04-30T16:35:42.9567276-06:00:Thread#0:T:    }
+2021-04-30T16:35:42.9581241-06:00:2021-04-30T16:35:42.9575077-06:00:Thread#0:T:}
+2021-04-30T16:35:42.9601075-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:42.9601374-06:00:Thread#:Scheduler: testitem #9 from normal test queue 
+2021-04-30T16:35:42.9601440-06:00:Thread#0:Scheduler: considering testitem #9 for thread 0
+2021-04-30T16:35:42.9601725-06:00:Thread#0:TestItem#9:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:42.9601801-06:00:Thread#0:TestItem#9:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:42.9601854-06:00:Thread#0:TestItem#9:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:42.9601908-06:00:Thread#0:Scheduler: using testitem #9 for thread 0
+2021-04-30T16:35:42.9602708-06:00:Thread#0:Scheduler: Test #9 is scheduled for thread
+2021-04-30T16:35:42.9603069-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:42.9633005-06:00:Thread#0: Test #8/0 is finished on thread #0 as Pending within 0.0511106 seconds
+2021-04-30T16:35:42.9659324-06:00:Thread#0: Test #9/0 is started on thread #0
+2021-04-30T16:35:42.9703533-06:00:2021-04-30T16:35:42.9697510-06:00:Thread#0:B:Given shredded chicken with wheat bread
+2021-04-30T16:35:42.9718740-06:00:2021-04-30T16:35:42.9711672-06:00:Thread#0:T:done: Subway.PBJcalc("shredded chicken", "wheat") (0.0s)
+2021-04-30T16:35:42.9727252-06:00:2021-04-30T16:35:42.9723615-06:00:Thread#0:B:Then the cost should be 4.25
+2021-04-30T16:35:42.9836101-06:00:2021-04-30T16:35:42.9789962-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:42.9844356-06:00:2021-04-30T16:35:42.9841230-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:42.9850983-06:00:2021-04-30T16:35:42.9847536-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:42.9858077-06:00:2021-04-30T16:35:42.9854687-06:00:Thread#0:T:        {
+2021-04-30T16:35:42.9864740-06:00:2021-04-30T16:35:42.9861395-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:42.9870859-06:00:2021-04-30T16:35:42.9867787-06:00:Thread#0:T:        }
+2021-04-30T16:35:42.9985169-06:00:2021-04-30T16:35:42.9980337-06:00:Thread#0:T:Pending: No matching step definition found for one or more steps.
+2021-04-30T16:35:42.9992024-06:00:2021-04-30T16:35:42.9988964-06:00:Thread#0:T:using System;
+2021-04-30T16:35:42.9997868-06:00:2021-04-30T16:35:42.9994926-06:00:Thread#0:T:using TechTalk.SpecFlow;
+2021-04-30T16:35:43.0003457-06:00:2021-04-30T16:35:43.0000647-06:00:Thread#0:T:namespace MyNamespace
+2021-04-30T16:35:43.0009425-06:00:2021-04-30T16:35:43.0006162-06:00:Thread#0:T:{
+2021-04-30T16:35:43.0015853-06:00:2021-04-30T16:35:43.0012148-06:00:Thread#0:T:    [Binding]
+2021-04-30T16:35:43.0021469-06:00:2021-04-30T16:35:43.0018757-06:00:Thread#0:T:    public class StepDefinitions
+2021-04-30T16:35:43.0030265-06:00:2021-04-30T16:35:43.0024618-06:00:Thread#0:T:    {
+2021-04-30T16:35:43.0038920-06:00:2021-04-30T16:35:43.0035600-06:00:Thread#0:T:        private readonly ScenarioContext _scenarioContext;
+2021-04-30T16:35:43.0045280-06:00:2021-04-30T16:35:43.0041258-06:00:Thread#0:T:        public StepDefinitions(ScenarioContext scenarioContext)
+2021-04-30T16:35:43.0051874-06:00:2021-04-30T16:35:43.0048709-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.0058192-06:00:2021-04-30T16:35:43.0055104-06:00:Thread#0:T:            _scenarioContext = scenarioContext;
+2021-04-30T16:35:43.0064316-06:00:2021-04-30T16:35:43.0061207-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.0070798-06:00:2021-04-30T16:35:43.0067285-06:00:Thread#0:T:        [Then(@"the cost should be (.*)")]
+2021-04-30T16:35:43.0078799-06:00:2021-04-30T16:35:43.0074514-06:00:Thread#0:T:        public void ThenTheCostShouldBe(Decimal p0)
+2021-04-30T16:35:43.0084944-06:00:2021-04-30T16:35:43.0081892-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.0093441-06:00:2021-04-30T16:35:43.0089132-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.0100163-06:00:2021-04-30T16:35:43.0096539-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.0106900-06:00:2021-04-30T16:35:43.0103367-06:00:Thread#0:T:    }
+2021-04-30T16:35:43.0140172-06:00:2021-04-30T16:35:43.0110712-06:00:Thread#0:T:}
+2021-04-30T16:35:43.0156364-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:43.0156703-06:00:Thread#:Scheduler: testitem #10 from normal test queue 
+2021-04-30T16:35:43.0156757-06:00:Thread#0:Scheduler: considering testitem #10 for thread 0
+2021-04-30T16:35:43.0157161-06:00:Thread#0:TestItem#10:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:43.0157210-06:00:Thread#0:TestItem#10:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:43.0157235-06:00:Thread#0:TestItem#10:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:43.0157264-06:00:Thread#0:Scheduler: using testitem #10 for thread 0
+2021-04-30T16:35:43.0157413-06:00:Thread#0:Scheduler: Test #10 is scheduled for thread
+2021-04-30T16:35:43.0157627-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:43.0179605-06:00:Thread#0: Test #9/0 is finished on thread #0 as Pending within 0.0519199 seconds
+2021-04-30T16:35:43.0191995-06:00:Thread#0: Test #10/0 is started on thread #0
+2021-04-30T16:35:43.0231689-06:00:2021-04-30T16:35:43.0225432-06:00:Thread#0:B:Given Shredded chicken and with white bread
+2021-04-30T16:35:43.0242123-06:00:2021-04-30T16:35:43.0238631-06:00:Thread#0:T:done: Subway.PBJcalc("Shredded chicken and", "white") (0.0s)
+2021-04-30T16:35:43.0259855-06:00:2021-04-30T16:35:43.0254861-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.0372257-06:00:2021-04-30T16:35:43.0367390-06:00:Thread#0:T:error: The given key 'sandytype' was not present in the dictionary. (0.0s)
+2021-04-30T16:35:43.0389749-06:00:2021-04-30T16:35:43.0385903-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.0410378-06:00:2021-04-30T16:35:43.0406388-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.0480627-06:00:2021-04-30T16:35:43.0475032-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.0491043-06:00:2021-04-30T16:35:43.0487473-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.0506418-06:00:2021-04-30T16:35:43.0500694-06:00:Thread#0:B:When they added together
+2021-04-30T16:35:43.0657834-06:00:2021-04-30T16:35:43.0652179-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.0671514-06:00:2021-04-30T16:35:43.0666491-06:00:Thread#0:T:        [When(@"they added together")]
+2021-04-30T16:35:43.0677879-06:00:2021-04-30T16:35:43.0674377-06:00:Thread#0:T:        public void WhenTheyAddedTogether()
+2021-04-30T16:35:43.0684535-06:00:2021-04-30T16:35:43.0680369-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.0691550-06:00:2021-04-30T16:35:43.0688020-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.0698149-06:00:2021-04-30T16:35:43.0695286-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.0706998-06:00:2021-04-30T16:35:43.0703747-06:00:Thread#0:B:Then Then sum should be 6.25
+2021-04-30T16:35:43.0752340-06:00:2021-04-30T16:35:43.0747445-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.0760278-06:00:2021-04-30T16:35:43.0755876-06:00:Thread#0:T:        [Then(@"Then sum should be (.*)")]
+2021-04-30T16:35:43.0766558-06:00:2021-04-30T16:35:43.0763192-06:00:Thread#0:T:        public void ThenThenSumShouldBe(Decimal p0)
+2021-04-30T16:35:43.0775237-06:00:2021-04-30T16:35:43.0769275-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.0782723-06:00:2021-04-30T16:35:43.0778675-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.0792065-06:00:2021-04-30T16:35:43.0785197-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.0893576-06:00:Thread#0:TestItem#10:Scheduler: reschedule tests for testitem #10
+2021-04-30T16:35:43.0903961-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:43.0904497-06:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #10
+2021-04-30T16:35:43.0904551-06:00:Thread#0:Scheduler: considering testitem #10 for thread 0
+2021-04-30T16:35:43.0904788-06:00:Thread#0:TestItem#10:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:43.0904828-06:00:Thread#0:TestItem#10:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:43.0904855-06:00:Thread#0:TestItem#10:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:43.0904882-06:00:Thread#0:Scheduler: using testitem #10 for thread 0
+2021-04-30T16:35:43.0905040-06:00:Thread#0:Scheduler: Test #10 is scheduled for thread
+2021-04-30T16:35:43.0905162-06:00:Thread#0:Scheduler: with testItemExecutionIndex 1
+2021-04-30T16:35:43.0933385-06:00:Thread#0: Test #10/0 is finished on thread #0 as Failed within 0.0740587 seconds
+2021-04-30T16:35:43.0946756-06:00:Thread#0: Test #10/1 is started on thread #0
+2021-04-30T16:35:43.0999130-06:00:2021-04-30T16:35:43.0993682-06:00:Thread#0:B:Given Shredded chicken and with white bread
+2021-04-30T16:35:43.1011490-06:00:2021-04-30T16:35:43.1007201-06:00:Thread#0:T:done: Subway.PBJcalc("Shredded chicken and", "white") (0.0s)
+2021-04-30T16:35:43.1019533-06:00:2021-04-30T16:35:43.1015414-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.1045945-06:00:2021-04-30T16:35:43.1041655-06:00:Thread#0:T:error: The given key 'sandytype' was not present in the dictionary. (0.0s)
+2021-04-30T16:35:43.1054712-06:00:2021-04-30T16:35:43.1051237-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.1064148-06:00:2021-04-30T16:35:43.1060243-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.1072176-06:00:2021-04-30T16:35:43.1068952-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.1080497-06:00:2021-04-30T16:35:43.1077093-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.1088135-06:00:2021-04-30T16:35:43.1085037-06:00:Thread#0:B:When they added together
+2021-04-30T16:35:43.1155124-06:00:2021-04-30T16:35:43.1149020-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.1162045-06:00:2021-04-30T16:35:43.1158535-06:00:Thread#0:T:        [When(@"they added together")]
+2021-04-30T16:35:43.1167667-06:00:2021-04-30T16:35:43.1164362-06:00:Thread#0:T:        public void WhenTheyAddedTogether()
+2021-04-30T16:35:43.1173442-06:00:2021-04-30T16:35:43.1170376-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.1179175-06:00:2021-04-30T16:35:43.1176017-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.1185639-06:00:2021-04-30T16:35:43.1181983-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.1193805-06:00:2021-04-30T16:35:43.1190525-06:00:Thread#0:B:Then Then sum should be 6.25
+2021-04-30T16:35:43.1264644-06:00:2021-04-30T16:35:43.1259705-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.1277239-06:00:2021-04-30T16:35:43.1268972-06:00:Thread#0:T:        [Then(@"Then sum should be (.*)")]
+2021-04-30T16:35:43.1292038-06:00:2021-04-30T16:35:43.1285059-06:00:Thread#0:T:        public void ThenThenSumShouldBe(Decimal p0)
+2021-04-30T16:35:43.1303816-06:00:2021-04-30T16:35:43.1296363-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.1313981-06:00:2021-04-30T16:35:43.1308551-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.1322579-06:00:2021-04-30T16:35:43.1318673-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.1354867-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:43.1355310-06:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #10
+2021-04-30T16:35:43.1355361-06:00:Thread#0:Scheduler: considering testitem #10 for thread 0
+2021-04-30T16:35:43.1355596-06:00:Thread#0:TestItem#10:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:43.1355638-06:00:Thread#0:TestItem#10:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:43.1355662-06:00:Thread#0:TestItem#10:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:43.1355690-06:00:Thread#0:Scheduler: using testitem #10 for thread 0
+2021-04-30T16:35:43.1355848-06:00:Thread#0:Scheduler: Test #10 is scheduled for thread
+2021-04-30T16:35:43.1355984-06:00:Thread#0:Scheduler: with testItemExecutionIndex 2
+2021-04-30T16:35:43.1382814-06:00:Thread#0: Test #10/1 is finished on thread #0 as Failed within 0.0435414 seconds
+2021-04-30T16:35:43.1393176-06:00:Thread#0: Test #10/2 is started on thread #0
+2021-04-30T16:35:43.1408251-06:00:2021-04-30T16:35:43.1403339-06:00:Thread#0:B:Given Shredded chicken and with white bread
+2021-04-30T16:35:43.1420535-06:00:2021-04-30T16:35:43.1416129-06:00:Thread#0:T:done: Subway.PBJcalc("Shredded chicken and", "white") (0.0s)
+2021-04-30T16:35:43.1442906-06:00:2021-04-30T16:35:43.1436603-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.1475674-06:00:2021-04-30T16:35:43.1469351-06:00:Thread#0:T:error: The given key 'sandytype' was not present in the dictionary. (0.0s)
+2021-04-30T16:35:43.1485055-06:00:2021-04-30T16:35:43.1481035-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.1494271-06:00:2021-04-30T16:35:43.1490327-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.1502391-06:00:2021-04-30T16:35:43.1498521-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.1509844-06:00:2021-04-30T16:35:43.1506526-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.1516695-06:00:2021-04-30T16:35:43.1513385-06:00:Thread#0:B:When they added together
+2021-04-30T16:35:43.1568639-06:00:2021-04-30T16:35:43.1563210-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.1582525-06:00:2021-04-30T16:35:43.1576404-06:00:Thread#0:T:        [When(@"they added together")]
+2021-04-30T16:35:43.1593345-06:00:2021-04-30T16:35:43.1586353-06:00:Thread#0:T:        public void WhenTheyAddedTogether()
+2021-04-30T16:35:43.1612658-06:00:2021-04-30T16:35:43.1600885-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.1626505-06:00:2021-04-30T16:35:43.1622056-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.1633767-06:00:2021-04-30T16:35:43.1630041-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.1646769-06:00:2021-04-30T16:35:43.1642809-06:00:Thread#0:B:Then Then sum should be 6.25
+2021-04-30T16:35:43.1720719-06:00:2021-04-30T16:35:43.1714851-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.1730681-06:00:2021-04-30T16:35:43.1727083-06:00:Thread#0:T:        [Then(@"Then sum should be (.*)")]
+2021-04-30T16:35:43.1737320-06:00:2021-04-30T16:35:43.1733903-06:00:Thread#0:T:        public void ThenThenSumShouldBe(Decimal p0)
+2021-04-30T16:35:43.1745493-06:00:2021-04-30T16:35:43.1741424-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.1751225-06:00:2021-04-30T16:35:43.1747976-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.1757625-06:00:2021-04-30T16:35:43.1753663-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.1789446-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:43.1789772-06:00:Thread#:Scheduler: testitem #11 from normal test queue 
+2021-04-30T16:35:43.1789836-06:00:Thread#0:Scheduler: considering testitem #11 for thread 0
+2021-04-30T16:35:43.1790104-06:00:Thread#0:TestItem#11:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:43.1790184-06:00:Thread#0:TestItem#11:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:43.1790217-06:00:Thread#0:TestItem#11:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:43.1790254-06:00:Thread#0:Scheduler: using testitem #11 for thread 0
+2021-04-30T16:35:43.1790441-06:00:Thread#0:Scheduler: Test #11 is scheduled for thread
+2021-04-30T16:35:43.1790638-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:43.1824020-06:00:Thread#0: Test #10/2 is finished on thread #0 as Failed within 0.043028 seconds
+2021-04-30T16:35:43.1833736-06:00:Thread#0: Test #11/0 is started on thread #0
+2021-04-30T16:35:43.1874168-06:00:2021-04-30T16:35:43.1867710-06:00:Thread#0:B:Given shredded chicken with rye bread
+2021-04-30T16:35:43.1886364-06:00:2021-04-30T16:35:43.1882027-06:00:Thread#0:T:done: Subway.PBJcalc("shredded chicken", "rye") (0.0s)
+2021-04-30T16:35:43.1894067-06:00:2021-04-30T16:35:43.1890510-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.1927962-06:00:2021-04-30T16:35:43.1922883-06:00:Thread#0:T:error: The given key 'sandytype' was not present in the dictionary. (0.0s)
+2021-04-30T16:35:43.1937778-06:00:2021-04-30T16:35:43.1933097-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.1950417-06:00:2021-04-30T16:35:43.1945111-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.1961834-06:00:2021-04-30T16:35:43.1956230-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.1973092-06:00:2021-04-30T16:35:43.1968677-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.1980913-06:00:2021-04-30T16:35:43.1977114-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.1990014-06:00:2021-04-30T16:35:43.1985772-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.1997950-06:00:2021-04-30T16:35:43.1994600-06:00:Thread#0:B:And with tomato added
+2021-04-30T16:35:43.2008257-06:00:2021-04-30T16:35:43.2003211-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2016833-06:00:2021-04-30T16:35:43.2013116-06:00:Thread#0:B:And with bacon added
+2021-04-30T16:35:43.2024987-06:00:2021-04-30T16:35:43.2021512-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2032692-06:00:2021-04-30T16:35:43.2029233-06:00:Thread#0:B:When they added together
+2021-04-30T16:35:43.2104241-06:00:2021-04-30T16:35:43.2096459-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.2132456-06:00:2021-04-30T16:35:43.2113468-06:00:Thread#0:T:        [When(@"they added together")]
+2021-04-30T16:35:43.2146206-06:00:2021-04-30T16:35:43.2140035-06:00:Thread#0:T:        public void WhenTheyAddedTogether()
+2021-04-30T16:35:43.2154858-06:00:2021-04-30T16:35:43.2150438-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.2167463-06:00:2021-04-30T16:35:43.2162980-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.2178154-06:00:2021-04-30T16:35:43.2173525-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.2187208-06:00:2021-04-30T16:35:43.2183210-06:00:Thread#0:B:Then Then sum should be 6.50
+2021-04-30T16:35:43.2295751-06:00:2021-04-30T16:35:43.2284934-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.2307822-06:00:2021-04-30T16:35:43.2303825-06:00:Thread#0:T:        [Then(@"Then sum should be (.*)")]
+2021-04-30T16:35:43.2313234-06:00:2021-04-30T16:35:43.2310345-06:00:Thread#0:T:        public void ThenThenSumShouldBe(Decimal p0)
+2021-04-30T16:35:43.2319005-06:00:2021-04-30T16:35:43.2315481-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.2326125-06:00:2021-04-30T16:35:43.2322282-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.2332725-06:00:2021-04-30T16:35:43.2328507-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.2357724-06:00:Thread#0:TestItem#11:Scheduler: reschedule tests for testitem #11
+2021-04-30T16:35:43.2372164-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:43.2372333-06:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #11
+2021-04-30T16:35:43.2372382-06:00:Thread#0:Scheduler: considering testitem #11 for thread 0
+2021-04-30T16:35:43.2372781-06:00:Thread#0:TestItem#11:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:43.2372826-06:00:Thread#0:TestItem#11:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:43.2372858-06:00:Thread#0:TestItem#11:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:43.2372893-06:00:Thread#0:Scheduler: using testitem #11 for thread 0
+2021-04-30T16:35:43.2373070-06:00:Thread#0:Scheduler: Test #11 is scheduled for thread
+2021-04-30T16:35:43.2373265-06:00:Thread#0:Scheduler: with testItemExecutionIndex 1
+2021-04-30T16:35:43.2415523-06:00:Thread#0: Test #11/0 is finished on thread #0 as Failed within 0.058134 seconds
+2021-04-30T16:35:43.2425096-06:00:Thread#0: Test #11/1 is started on thread #0
+2021-04-30T16:35:43.2465714-06:00:2021-04-30T16:35:43.2445081-06:00:Thread#0:B:Given shredded chicken with rye bread
+2021-04-30T16:35:43.2477606-06:00:2021-04-30T16:35:43.2473528-06:00:Thread#0:T:done: Subway.PBJcalc("shredded chicken", "rye") (0.0s)
+2021-04-30T16:35:43.2484472-06:00:2021-04-30T16:35:43.2480957-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.2506670-06:00:2021-04-30T16:35:43.2502181-06:00:Thread#0:T:error: The given key 'sandytype' was not present in the dictionary. (0.0s)
+2021-04-30T16:35:43.2513956-06:00:2021-04-30T16:35:43.2510840-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.2524951-06:00:2021-04-30T16:35:43.2518949-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2534208-06:00:2021-04-30T16:35:43.2530893-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.2541347-06:00:2021-04-30T16:35:43.2538334-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2546920-06:00:2021-04-30T16:35:43.2544211-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.2553382-06:00:2021-04-30T16:35:43.2550349-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2558855-06:00:2021-04-30T16:35:43.2556113-06:00:Thread#0:B:And with tomato added
+2021-04-30T16:35:43.2564525-06:00:2021-04-30T16:35:43.2562174-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2569286-06:00:2021-04-30T16:35:43.2567059-06:00:Thread#0:B:And with bacon added
+2021-04-30T16:35:43.2575630-06:00:2021-04-30T16:35:43.2572676-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2584737-06:00:2021-04-30T16:35:43.2579329-06:00:Thread#0:B:When they added together
+2021-04-30T16:35:43.2631036-06:00:2021-04-30T16:35:43.2626124-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.2637449-06:00:2021-04-30T16:35:43.2634324-06:00:Thread#0:T:        [When(@"they added together")]
+2021-04-30T16:35:43.2642974-06:00:2021-04-30T16:35:43.2640256-06:00:Thread#0:T:        public void WhenTheyAddedTogether()
+2021-04-30T16:35:43.2648303-06:00:2021-04-30T16:35:43.2645180-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.2652964-06:00:2021-04-30T16:35:43.2650429-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.2657522-06:00:2021-04-30T16:35:43.2654960-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.2664072-06:00:2021-04-30T16:35:43.2661310-06:00:Thread#0:B:Then Then sum should be 6.50
+2021-04-30T16:35:43.2706763-06:00:2021-04-30T16:35:43.2702437-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.2712978-06:00:2021-04-30T16:35:43.2709799-06:00:Thread#0:T:        [Then(@"Then sum should be (.*)")]
+2021-04-30T16:35:43.2718689-06:00:2021-04-30T16:35:43.2715695-06:00:Thread#0:T:        public void ThenThenSumShouldBe(Decimal p0)
+2021-04-30T16:35:43.2723777-06:00:2021-04-30T16:35:43.2721081-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.2728463-06:00:2021-04-30T16:35:43.2725921-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.2733189-06:00:2021-04-30T16:35:43.2730369-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.2751861-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:43.2752142-06:00:Thread#:Scheduler: dequeuing a rescheduled testitem: #11
+2021-04-30T16:35:43.2752204-06:00:Thread#0:Scheduler: considering testitem #11 for thread 0
+2021-04-30T16:35:43.2752453-06:00:Thread#0:TestItem#11:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:43.2752547-06:00:Thread#0:TestItem#11:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:43.2752583-06:00:Thread#0:TestItem#11:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:43.2752613-06:00:Thread#0:Scheduler: using testitem #11 for thread 0
+2021-04-30T16:35:43.2752974-06:00:Thread#0:Scheduler: Test #11 is scheduled for thread
+2021-04-30T16:35:43.2753174-06:00:Thread#0:Scheduler: with testItemExecutionIndex 2
+2021-04-30T16:35:43.2785195-06:00:Thread#0: Test #11/1 is finished on thread #0 as Failed within 0.0354919 seconds
+2021-04-30T16:35:43.2793353-06:00:Thread#0: Test #11/2 is started on thread #0
+2021-04-30T16:35:43.2814369-06:00:2021-04-30T16:35:43.2803545-06:00:Thread#0:B:Given shredded chicken with rye bread
+2021-04-30T16:35:43.2830155-06:00:2021-04-30T16:35:43.2823022-06:00:Thread#0:T:done: Subway.PBJcalc("shredded chicken", "rye") (0.0s)
+2021-04-30T16:35:43.2840444-06:00:2021-04-30T16:35:43.2835080-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.2861326-06:00:2021-04-30T16:35:43.2857309-06:00:Thread#0:T:error: The given key 'sandytype' was not present in the dictionary. (0.0s)
+2021-04-30T16:35:43.2868141-06:00:2021-04-30T16:35:43.2865076-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.2874690-06:00:2021-04-30T16:35:43.2871804-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2880874-06:00:2021-04-30T16:35:43.2878218-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.2886672-06:00:2021-04-30T16:35:43.2884176-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2891533-06:00:2021-04-30T16:35:43.2889225-06:00:Thread#0:B:And with lettuce added
+2021-04-30T16:35:43.2897383-06:00:2021-04-30T16:35:43.2894603-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2902436-06:00:2021-04-30T16:35:43.2900062-06:00:Thread#0:B:And with tomato added
+2021-04-30T16:35:43.2907317-06:00:2021-04-30T16:35:43.2905225-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2911498-06:00:2021-04-30T16:35:43.2909552-06:00:Thread#0:B:And with bacon added
+2021-04-30T16:35:43.2917470-06:00:2021-04-30T16:35:43.2914431-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.2922682-06:00:2021-04-30T16:35:43.2919949-06:00:Thread#0:B:When they added together
+2021-04-30T16:35:43.2977783-06:00:2021-04-30T16:35:43.2973535-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.2983620-06:00:2021-04-30T16:35:43.2980867-06:00:Thread#0:T:        [When(@"they added together")]
+2021-04-30T16:35:43.2989337-06:00:2021-04-30T16:35:43.2986278-06:00:Thread#0:T:        public void WhenTheyAddedTogether()
+2021-04-30T16:35:43.3007624-06:00:2021-04-30T16:35:43.3003139-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.3014951-06:00:2021-04-30T16:35:43.3011794-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.3019897-06:00:2021-04-30T16:35:43.3017503-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.3026643-06:00:2021-04-30T16:35:43.3023815-06:00:Thread#0:B:Then Then sum should be 6.50
+2021-04-30T16:35:43.3061323-06:00:2021-04-30T16:35:43.3057285-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.3066965-06:00:2021-04-30T16:35:43.3064360-06:00:Thread#0:T:        [Then(@"Then sum should be (.*)")]
+2021-04-30T16:35:43.3072172-06:00:2021-04-30T16:35:43.3069339-06:00:Thread#0:T:        public void ThenThenSumShouldBe(Decimal p0)
+2021-04-30T16:35:43.3077071-06:00:2021-04-30T16:35:43.3074612-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.3081933-06:00:2021-04-30T16:35:43.3079377-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.3086937-06:00:2021-04-30T16:35:43.3084263-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.3106822-06:00:Thread#0:Scheduler: get next test for thread 0
+2021-04-30T16:35:43.3107129-06:00:Thread#:Scheduler: testitem #12 from normal test queue 
+2021-04-30T16:35:43.3107208-06:00:Thread#0:Scheduler: considering testitem #12 for thread 0
+2021-04-30T16:35:43.3107520-06:00:Thread#0:TestItem#12:testItemMatchesCurrentTestThread:UnSpecific
+2021-04-30T16:35:43.3107570-06:00:Thread#0:TestItem#12:runsOnOneOtherThreadSpecific:False
+2021-04-30T16:35:43.3107603-06:00:Thread#0:TestItem#12:runsOnOneOtherThreadUnspecific:False
+2021-04-30T16:35:43.3107628-06:00:Thread#0:Scheduler: using testitem #12 for thread 0
+2021-04-30T16:35:43.3107745-06:00:Thread#0:Scheduler: Test #12 is scheduled for thread
+2021-04-30T16:35:43.3107837-06:00:Thread#0:Scheduler: with testItemExecutionIndex 0
+2021-04-30T16:35:43.3130673-06:00:Thread#0: Test #11/2 is finished on thread #0 as Failed within 0.0336826 seconds
+2021-04-30T16:35:43.3138242-06:00:Thread#0: Test #12/0 is started on thread #0
+2021-04-30T16:35:43.3173674-06:00:2021-04-30T16:35:43.3168691-06:00:Thread#0:B:Given BLT with rye bread
+2021-04-30T16:35:43.3183035-06:00:2021-04-30T16:35:43.3179585-06:00:Thread#0:T:done: Subway.PBJcalc("BLT", "rye") (0.0s)
+2021-04-30T16:35:43.3188564-06:00:2021-04-30T16:35:43.3186062-06:00:Thread#0:B:And with cheese added
+2021-04-30T16:35:43.3208984-06:00:2021-04-30T16:35:43.3205529-06:00:Thread#0:T:error: The given key 'sandytype' was not present in the dictionary. (0.0s)
+2021-04-30T16:35:43.3215063-06:00:2021-04-30T16:35:43.3212706-06:00:Thread#0:B:And with bacon added
+2021-04-30T16:35:43.3221673-06:00:2021-04-30T16:35:43.3219161-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.3227661-06:00:2021-04-30T16:35:43.3224681-06:00:Thread#0:B:And with bacon added
+2021-04-30T16:35:43.3233257-06:00:2021-04-30T16:35:43.3230904-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.3238041-06:00:2021-04-30T16:35:43.3235886-06:00:Thread#0:B:And with bacon added
+2021-04-30T16:35:43.3243102-06:00:2021-04-30T16:35:43.3240860-06:00:Thread#0:T:skipped because of previous errors
+2021-04-30T16:35:43.3247973-06:00:2021-04-30T16:35:43.3245555-06:00:Thread#0:B:When they added together
+2021-04-30T16:35:43.3289646-06:00:2021-04-30T16:35:43.3286058-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.3295011-06:00:2021-04-30T16:35:43.3292539-06:00:Thread#0:T:        [When(@"they added together")]
+2021-04-30T16:35:43.3302161-06:00:2021-04-30T16:35:43.3297977-06:00:Thread#0:T:        public void WhenTheyAddedTogether()
+2021-04-30T16:35:43.3309839-06:00:2021-04-30T16:35:43.3307446-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.3314537-06:00:2021-04-30T16:35:43.3311686-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.3319199-06:00:2021-04-30T16:35:43.3316871-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.3325627-06:00:2021-04-30T16:35:43.3323079-06:00:Thread#0:B:Then Then sum should be 8.75
+2021-04-30T16:35:43.3357234-06:00:2021-04-30T16:35:43.3353573-06:00:Thread#0:T:No matching step definition found for the step. Use the following code to create one:
+2021-04-30T16:35:43.3362863-06:00:2021-04-30T16:35:43.3359788-06:00:Thread#0:T:        [Then(@"Then sum should be (.*)")]
+2021-04-30T16:35:43.3367672-06:00:2021-04-30T16:35:43.3365161-06:00:Thread#0:T:        public void ThenThenSumShouldBe(Decimal p0)
+2021-04-30T16:35:43.3372206-06:00:2021-04-30T16:35:43.3369915-06:00:Thread#0:T:        {
+2021-04-30T16:35:43.3376935-06:00:2021-04-30T16:35:43.3374291-06:00:Thread#0:T:            _scenarioContext.Pending();
+2021-04-30T16:35:43.3380958-06:00:2021-04-30T16:35:43.3378658-06:00:Thread#0:T:        }
+2021-04-30T16:35:43.3394989-06:00:Cancelling because configured number of failures reached
+2021-04-30T16:35:43.3441243-06:00:Thread#0: Test #12/0 is finished on thread #0 as Failed within 0.0302613 seconds
+2021-04-30T16:35:43.3539895-06:00:2021-04-30T16:35:43.3537505-06:00:Got Deinitialize Signal
+2021-04-30T16:35:43.3586146-06:00:RPC Client disconnected, because 'Disposed'. 
+LastMessage: 
+Description:Stream has been disposed
+Exception:<none>
+2021-04-30T16:35:43.3600926-06:00:RPC Server disconnected, because 'Disposed'. 
+LastMessage: 
+Description:Reached end of stream.
+Exception:<none>
+2021-04-30T16:35:43.3638475-06:00:RPC Server disconnected, because 'Disposed'. 
+LastMessage: 
+Description:Reached end of stream.
+Exception:<none>
+2021-04-30T16:35:43.3797479-06:00:Thread#-1:Scheduler: get next test for thread -1
+2021-04-30T16:35:43.3797698-06:00:Thread#:Scheduler: at the end of normal test queue
+2021-04-30T16:35:43.3797725-06:00:Thread#-1:Scheduler: enumerator for thread is at end
+2021-04-30T16:35:43.3884715-06:00;Thread#12;Info;test run finished
+2021-04-30T16:35:43.3886479-06:00;Thread#12;Info;publishing test results
+2021-04-30T16:35:43.3889239-06:00;Thread#12;Info;Not publishing results.
+2021-04-30T16:35:43.3890222-06:00;Thread#12;Info;test results published
+2021-04-30T16:35:43.3890953-06:00;Thread#12;Info;generating reports
+2021-04-30T16:35:43.5013733-06:00;Thread#12;Info;Starting external report generation process
+2021-04-30T16:35:46.2861608-06:00;Thread#12;Info;Successfully generated reports.
+2021-04-30T16:35:46.2908689-06:00;Thread#12;Info;Successfully generated reports
+2021-04-30T16:35:46.3087349-06:00:Total: 9 (test executions: 13)
+2021-04-30T16:35:46.3127530-06:00:Succeeded: 0
+2021-04-30T16:35:46.3138712-06:00:Ignored: 0
+2021-04-30T16:35:46.3144458-06:00:Pending: 6
+2021-04-30T16:35:46.3144550-06:00:Skipped: 0
+2021-04-30T16:35:46.3150302-06:00:Failed: 3
+2021-04-30T16:35:46.3305608-06:00;VSTestExecutionThread;Info;Adding attachments to VSTest
+2021-04-30T16:35:46.3307508-06:00;VSTestExecutionThread;Info;adding Test Execution Report 'C:\Users\hojay\Source\Repos\newSubway\TestResults\Unnamed project__2021-04-30T163536.html'
+========== End of log file ==========

@@ -11,3 +11,16 @@ C:\Users\durli.hojayeva\source\repos\subwayProject\obj\Debug\netcoreapp3.1\subwa
 C:\Users\durli.hojayeva\source\repos\subwayProject\obj\Debug\netcoreapp3.1\subwayProject.dll
 C:\Users\durli.hojayeva\source\repos\subwayProject\obj\Debug\netcoreapp3.1\subwayProject.pdb
 C:\Users\durli.hojayeva\source\repos\subwayProject\obj\Debug\netcoreapp3.1\subwayProject.genruntimeconfig.cache
+C:\Users\hojay\Source\Repos\newSubway\bin\Debug\netcoreapp3.1\subwayProject.exe
+C:\Users\hojay\Source\Repos\newSubway\bin\Debug\netcoreapp3.1\subwayProject.deps.json
+C:\Users\hojay\Source\Repos\newSubway\bin\Debug\netcoreapp3.1\subwayProject.runtimeconfig.json
+C:\Users\hojay\Source\Repos\newSubway\bin\Debug\netcoreapp3.1\subwayProject.runtimeconfig.dev.json
+C:\Users\hojay\Source\Repos\newSubway\bin\Debug\netcoreapp3.1\subwayProject.dll
+C:\Users\hojay\Source\Repos\newSubway\bin\Debug\netcoreapp3.1\subwayProject.pdb
+C:\Users\hojay\Source\Repos\newSubway\obj\Debug\netcoreapp3.1\subwayProject.csprojAssemblyReference.cache
+C:\Users\hojay\Source\Repos\newSubway\obj\Debug\netcoreapp3.1\subwayProject.AssemblyInfoInputs.cache
+C:\Users\hojay\Source\Repos\newSubway\obj\Debug\netcoreapp3.1\subwayProject.AssemblyInfo.cs
+C:\Users\hojay\Source\Repos\newSubway\obj\Debug\netcoreapp3.1\subwayProject.csproj.CoreCompileInputs.cache
+C:\Users\hojay\Source\Repos\newSubway\obj\Debug\netcoreapp3.1\subwayProject.dll
+C:\Users\hojay\Source\Repos\newSubway\obj\Debug\netcoreapp3.1\subwayProject.pdb
+C:\Users\hojay\Source\Repos\newSubway\obj\Debug\netcoreapp3.1\subwayProject.genruntimeconfig.cache
